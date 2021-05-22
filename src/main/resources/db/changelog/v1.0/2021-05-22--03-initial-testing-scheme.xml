@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createSchema-testing">
+        <sql dbms="mssql">
+            IF schema_id('testing') IS NULL
+            EXEC ('CREATE SCHEMA testing');
+        </sql>
+        <sql dbms="h2">
+            CREATE SCHEMA IF NOT EXISTS testing;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createSchema-users">
+        <sql dbms="mssql">
+            IF schema_id('users') IS NULL
+            EXEC ('CREATE SCHEMA users');
+        </sql>
+        <sql dbms="h2">
+            CREATE SCHEMA IF NOT EXISTS users;
+        </sql>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createTable-User">
+        <createTable tableName="User" schemaName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_User"/>
+            </column>
+            <column name="firstName" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middleName" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="workPlace" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passwordHash" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isQualificationTested" type="bit" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createTable-Group">
+        <createTable tableName="Group" schemaName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_Group"/>
+            </column>
+            <column name="name" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="nvarchar(200)"/>
+            <column name="isDisabled" type="bit" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createTable-Permission">
+        <createTable tableName="Permission" schemaName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_Permission"/>
+            </column>
+            <column name="name" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="nvarchar(200)"/>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createTable-GroupPermission">
+        <createTable tableName="GroupPermission" schemaName="users">
+            <column name="groupId" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="PK_GroupPermission"
+                             references="Group(id)" foreignKeyName="FK_GroupPermission_Group"/>
+            </column>
+            <column name="permissionId" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="PK_GroupPermission"
+                             references="Permission(id)" foreignKeyName="FK_GroupPermission_Permission"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--01-createTable-UserGroup">
+        <createTable tableName="UserGroup" schemaName="users">
+            <column name="userId" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="PK_UserGroup"
+                             references="User(id)" foreignKeyName="FK_UserGroup_User"/>
+            </column>
+            <column name="groupId" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="PK_UserGroup"
+                             references="Group(id)" foreignKeyName="FK_UserGroup_Group"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

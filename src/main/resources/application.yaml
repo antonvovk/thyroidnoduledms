@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ThyroidNoduleDMS
+  liquibase:
+    change-log: classpath:db/changelog-master.xml
+    enabled: false
