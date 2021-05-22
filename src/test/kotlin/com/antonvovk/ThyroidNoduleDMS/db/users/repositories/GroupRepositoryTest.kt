@@ -37,17 +37,17 @@ internal class GroupRepositoryTest @Autowired constructor(
 
     @Test
     fun `Test save with full model`() {
-        val permissions = mutableListOf(
+        val permissionList = mutableListOf(
             Permission(name = "VIEW_ANALYSIS"),
             Permission(name = "ADD_ANALYSIS")
         )
-        permissionRepository.saveAll(permissions)
+        permissionRepository.saveAll(permissionList)
 
         val group = Group(
             name = "Test group",
             description = "Some description about group",
             isDisabled = true,
-            permissions = permissions
+            permissions = permissionList
         )
 
         val result = groupRepository.save(group)
@@ -64,17 +64,17 @@ internal class GroupRepositoryTest @Autowired constructor(
 
     @Test
     fun `Test add and remove permission`() {
-        val permissions = mutableListOf(
+        val permissionList = mutableListOf(
             Permission(name = "VIEW_ANALYSIS"),
             Permission(name = "ADD_ANALYSIS")
         )
-        permissionRepository.saveAll(permissions)
+        permissionRepository.saveAll(permissionList)
 
         val group = Group(
             name = "Test group",
             description = "Some description about group",
             isDisabled = true,
-            permissions = mutableListOf(permissions[0])
+            permissions = mutableListOf(permissionList[0])
         )
 
         var result = groupRepository.save(group)
@@ -88,7 +88,7 @@ internal class GroupRepositoryTest @Autowired constructor(
             updated shouldNotBe null
         }
 
-        result.permissions.add(permissions[1])
+        result.permissions.add(permissionList[1])
         result = groupRepository.save(result)
         assertSoftly(result) {
             permissions shouldBe permissions
@@ -97,7 +97,7 @@ internal class GroupRepositoryTest @Autowired constructor(
         result.permissions.removeAt(0)
         result = groupRepository.save(result)
         assertSoftly(result) {
-            permissions shouldBe mutableListOf(permissions[1])
+            permissions shouldBe mutableListOf(permissionList[1])
         }
     }
 }
