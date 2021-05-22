@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val mapstructVersion = "1.4.2.Final"
+val springdocVersion = "1.5.8"
+
 plugins {
     id("org.springframework.boot") version "2.5.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -7,10 +10,11 @@ plugins {
     kotlin("jvm") version "1.5.0"
     kotlin("plugin.spring") version "1.5.0"
     kotlin("plugin.jpa") version "1.5.0"
+    kotlin("kapt") version "1.5.0"
 }
 
 group = "com.antonvovk"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
@@ -23,23 +27,51 @@ repositories {
     mavenCentral()
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    // Spring boot
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+    // Swagger
+    implementation("org.springdoc", "springdoc-openapi-ui", springdocVersion)
+    implementation("org.springdoc", "springdoc-openapi-kotlin", springdocVersion)
+
+    // Database
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.liquibase:liquibase-core")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
+
+    // Testing
+    testImplementation("org.springframework.boot", "spring-boot-starter-test") {
+        exclude(module = "junit")
+        exclude(module = "mockito-core")
+    }
+    testImplementation("org.junit.jupiter", "junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine")
+    testImplementation("com.ninja-squad", "springmockk", "3.0.1")
+    testImplementation("io.kotest", "kotest-assertions-core", "4.5.0")
+
+    // Logger
+    implementation("org.slf4j", "slf4j-api", "1.7.30")
+
+    // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    implementation("org.liquibase:liquibase-core")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+
+    // Mapper
+    implementation("org.mapstruct", "mapstruct", mapstructVersion)
+    kapt("org.mapstruct", "mapstruct-processor", mapstructVersion)
 }
 
 tasks.withType<KotlinCompile> {
@@ -51,4 +83,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.war {
+    enabled = true
+    archiveVersion.set("")
+    archiveBaseName.set("thyroid-nodule-dms")
 }
