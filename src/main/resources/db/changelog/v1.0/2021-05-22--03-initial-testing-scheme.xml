@@ -14,4 +14,96 @@
             CREATE SCHEMA IF NOT EXISTS testing;
         </sql>
     </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-QualificationTestingHistory">
+        <createTable tableName="QualificationTestingHistory" schemaName="testing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_QualificationTestingHistory"/>
+            </column>
+            <column name="userId" type="bigint">
+                <constraints nullable="false"
+                             references="User(id)"
+                             foreignKeyName="FK_QualificationTestingHistory_User"/>
+            </column>
+            <column name="scoredPercentage" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-QuestionAnswer">
+        <createTable tableName="QuestionAnswer" schemaName="testing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_QuestionAnswer"/>
+            </column>
+            <column name="answerText" type="nvarchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-TestingQuestion">
+        <createTable tableName="TestingQuestion" schemaName="testing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_TestingQuestion"/>
+            </column>
+            <column name="ultrasoundImageId" type="bigint">
+                <constraints references="UltrasoundImage(id)" foreignKeyName="FK_TestingQuestion_UltrasoundImage"/>
+            </column>
+            <column name="correctAnswerId" type="bigint">
+                <constraints nullable="false"
+                             references="QuestionAnswer(id)" foreignKeyName="FK_TestingQuestion_QuestionAnswer"/>
+            </column>
+            <column name="questionText" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-AnsweredQuestion">
+        <createTable tableName="AnsweredQuestion" schemaName="testing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_AnsweredQuestion"/>
+            </column>
+            <column name="testingHistoryId" type="bigint">
+                <constraints nullable="false"
+                             references="QualificationTestingHistory(id)"
+                             foreignKeyName="FK_AnsweredQuestion_QualificationTestingHistory"/>
+            </column>
+            <column name="testingQuestionId" type="bigint">
+                <constraints nullable="false"
+                             references="TestingQuestion(id)"
+                             foreignKeyName="FK_AnsweredQuestion_TestingQuestion"/>
+            </column>
+            <column name="givenAnswerId" type="bigint">
+                <constraints nullable="false"
+                             references="QuestionAnswer(id)"
+                             foreignKeyName="FK_AnsweredQuestion_QuestionAnswer"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
