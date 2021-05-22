@@ -21,10 +21,10 @@
                 <constraints primaryKey="true" primaryKeyName="PK_Analysis"/>
             </column>
             <column name="createdBy" type="bigint">
-                <constraints nullable="false" references="User(id)" foreignKeyName="FK_Analysis_CreatedByUser"/>
+                <constraints nullable="false" references="users.User(id)" foreignKeyName="FK_Analysis_CreatedByUser"/>
             </column>
             <column name="updatedBy" type="bigint">
-                <constraints nullable="false" references="User(id)" foreignKeyName="FK_Analysis_UpdatedByUser"/>
+                <constraints nullable="false" references="users.User(id)" foreignKeyName="FK_Analysis_UpdatedByUser"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
@@ -41,7 +41,8 @@
                 <constraints primaryKey="true" primaryKeyName="PK_PatientInfo"/>
             </column>
             <column name="analysisId" type="bigint">
-                <constraints nullable="false" references="Analysis(id)" foreignKeyName="FK_PatientInfo_Analysis"/>
+                <constraints nullable="false" references="analysis.Analysis(id)"
+                             foreignKeyName="FK_PatientInfo_Analysis"/>
             </column>
             <column name="sex" type="char(1)">
                 <constraints nullable="false"/>
@@ -65,7 +66,8 @@
                 <constraints primaryKey="true" primaryKeyName="PK_BiopsyAnalysis"/>
             </column>
             <column name="analysisId" type="bigint">
-                <constraints nullable="false" references="Analysis(id)" foreignKeyName="FK_BiopsyAnalysis_Analysis"/>
+                <constraints nullable="false" references="analysis.Analysis(id)"
+                             foreignKeyName="FK_BiopsyAnalysis_Analysis"/>
             </column>
             <column name="bethesdaLevel" type="nvarchar(20)">
                 <constraints nullable="false"/>
@@ -85,7 +87,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_UltraSoundAnalysis"/>
             </column>
             <column name="analysisId" type="bigint">
-                <constraints nullable="false" references="Analysis(id)"
+                <constraints nullable="false" references="analysis.Analysis(id)"
                              foreignKeyName="FK_UltraSoundAnalysis_Analysis"/>
             </column>
             <column name="size" type="nvarchar(100)">
@@ -97,7 +99,7 @@
             <column name="shape" type="nvarchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="contours" type="nvarchar(100">
+            <column name="contours" type="nvarchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="echogenicity" type="nvarchar(100)">
@@ -133,7 +135,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_NoduleStructure"/>
             </column>
             <column name="ultrasoundAnalysisId" type="bigint">
-                <constraints nullable="false" references="UltraSoundAnalysis(id)"
+                <constraints nullable="false" references="analysis.UltraSoundAnalysis(id)"
                              foreignKeyName="FK_NoduleStructure_UltraSoundAnalysis"/>
             </column>
             <column name="type" type="nvarchar(100)">
@@ -148,7 +150,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_UltrasoundImage"/>
             </column>
             <column name="ultrasoundAnalysisId" type="bigint">
-                <constraints nullable="false" references="UltraSoundAnalysis(id)"
+                <constraints nullable="false" references="analysis.UltraSoundAnalysis(id)"
                              foreignKeyName="FK_UltrasoundImage_UltraSoundAnalysis"/>
             </column>
             <column name="filename" type="nvarchar(100)">

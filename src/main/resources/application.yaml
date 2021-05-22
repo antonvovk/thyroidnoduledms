@@ -1,6 +1,13 @@
 spring:
   application:
     name: ThyroidNoduleDMS
+
   liquibase:
-    change-log: classpath:db/changelog-master.xml
+    change-log: classpath:db/changelog/changelog-master.xml
     enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

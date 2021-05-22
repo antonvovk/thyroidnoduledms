@@ -22,7 +22,7 @@
             </column>
             <column name="userId" type="bigint">
                 <constraints nullable="false"
-                             references="User(id)"
+                             references="users.User(id)"
                              foreignKeyName="FK_QualificationTestingHistory_User"/>
             </column>
             <column name="scoredPercentage" type="decimal">
@@ -60,11 +60,13 @@
                 <constraints primaryKey="true" primaryKeyName="PK_TestingQuestion"/>
             </column>
             <column name="ultrasoundImageId" type="bigint">
-                <constraints references="UltrasoundImage(id)" foreignKeyName="FK_TestingQuestion_UltrasoundImage"/>
+                <constraints references="analysis.UltrasoundImage(id)"
+                             foreignKeyName="FK_TestingQuestion_UltrasoundImage"/>
             </column>
             <column name="correctAnswerId" type="bigint">
                 <constraints nullable="false"
-                             references="QuestionAnswer(id)" foreignKeyName="FK_TestingQuestion_QuestionAnswer"/>
+                             references="testing.QuestionAnswer(id)"
+                             foreignKeyName="FK_TestingQuestion_QuestionAnswer"/>
             </column>
             <column name="questionText" type="nvarchar(200)">
                 <constraints nullable="false"/>
@@ -85,17 +87,17 @@
             </column>
             <column name="testingHistoryId" type="bigint">
                 <constraints nullable="false"
-                             references="QualificationTestingHistory(id)"
+                             references="testing.QualificationTestingHistory(id)"
                              foreignKeyName="FK_AnsweredQuestion_QualificationTestingHistory"/>
             </column>
             <column name="testingQuestionId" type="bigint">
                 <constraints nullable="false"
-                             references="TestingQuestion(id)"
+                             references="testing.TestingQuestion(id)"
                              foreignKeyName="FK_AnsweredQuestion_TestingQuestion"/>
             </column>
             <column name="givenAnswerId" type="bigint">
                 <constraints nullable="false"
-                             references="QuestionAnswer(id)"
+                             references="testing.QuestionAnswer(id)"
                              foreignKeyName="FK_AnsweredQuestion_QuestionAnswer"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
