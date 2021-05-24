@@ -5,7 +5,6 @@ import com.antonvovk.ThyroidNoduleDMS.db.users.models.Permission
 import com.antonvovk.ThyroidNoduleDMS.db.users.models.User
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -31,19 +30,7 @@ internal class UserRepositoryTest @Autowired constructor(
         )
 
         val result = userRepository.save(user)
-        assertSoftly(result) {
-            id shouldNotBe null
-            firstName shouldBe user.firstName
-            lastName shouldBe user.lastName
-            middleName shouldBe user.middleName
-            workPlace shouldBe user.workPlace
-            email shouldBe user.email
-            passwordHash shouldBe user.passwordHash
-            isQualificationTested shouldBe false
-            groups shouldBe mutableListOf()
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe user
     }
 
     @Test
@@ -73,19 +60,7 @@ internal class UserRepositoryTest @Autowired constructor(
         )
 
         val result = userRepository.save(user)
-        assertSoftly(result) {
-            id shouldNotBe null
-            firstName shouldBe user.firstName
-            lastName shouldBe user.lastName
-            middleName shouldBe user.middleName
-            workPlace shouldBe user.workPlace
-            email shouldBe user.email
-            passwordHash shouldBe user.passwordHash
-            isQualificationTested shouldBe user.isQualificationTested
-            groups shouldBe user.groups
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe user
     }
 
     @Test
@@ -115,19 +90,7 @@ internal class UserRepositoryTest @Autowired constructor(
         )
 
         var result = userRepository.save(user)
-        assertSoftly(result) {
-            id shouldNotBe null
-            firstName shouldBe user.firstName
-            lastName shouldBe user.lastName
-            middleName shouldBe user.middleName
-            workPlace shouldBe user.workPlace
-            email shouldBe user.email
-            passwordHash shouldBe user.passwordHash
-            isQualificationTested shouldBe user.isQualificationTested
-            groups shouldBe user.groups
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe user
 
         result.groups.add(groupList[1])
         result = userRepository.save(result)

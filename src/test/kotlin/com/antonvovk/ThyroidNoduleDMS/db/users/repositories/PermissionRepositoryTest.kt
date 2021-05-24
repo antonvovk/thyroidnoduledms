@@ -1,9 +1,7 @@
 package com.antonvovk.ThyroidNoduleDMS.db.users.repositories
 
 import com.antonvovk.ThyroidNoduleDMS.db.users.models.Permission
-import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -22,13 +20,7 @@ internal class PermissionRepositoryTest @Autowired constructor(
         )
 
         val result = permissionRepository.save(permission)
-        assertSoftly(result) {
-            id shouldNotBe null
-            name shouldBe permission.name
-            description shouldBe null
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe permission
     }
 
     @Test
@@ -39,12 +31,6 @@ internal class PermissionRepositoryTest @Autowired constructor(
         )
 
         val result = permissionRepository.save(permission)
-        assertSoftly(result) {
-            id shouldNotBe null
-            name shouldBe permission.name
-            description shouldBe permission.description
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe permission
     }
 }

@@ -4,7 +4,6 @@ import com.antonvovk.ThyroidNoduleDMS.db.users.models.Group
 import com.antonvovk.ThyroidNoduleDMS.db.users.models.Permission
 import io.kotest.assertions.assertSoftly
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -24,15 +23,7 @@ internal class GroupRepositoryTest @Autowired constructor(
         )
 
         val result = groupRepository.save(group)
-        assertSoftly(result) {
-            id shouldNotBe null
-            name shouldBe group.name
-            description shouldBe null
-            isDisabled shouldBe false
-            permissions shouldBe mutableListOf()
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe group
     }
 
     @Test
@@ -51,15 +42,7 @@ internal class GroupRepositoryTest @Autowired constructor(
         )
 
         val result = groupRepository.save(group)
-        assertSoftly(result) {
-            id shouldNotBe null
-            name shouldBe group.name
-            description shouldBe group.description
-            isDisabled shouldBe group.isDisabled
-            permissions shouldBe group.permissions
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe group
     }
 
     @Test
@@ -78,15 +61,7 @@ internal class GroupRepositoryTest @Autowired constructor(
         )
 
         var result = groupRepository.save(group)
-        assertSoftly(result) {
-            id shouldNotBe null
-            name shouldBe group.name
-            description shouldBe group.description
-            isDisabled shouldBe group.isDisabled
-            permissions shouldBe group.permissions
-            created shouldNotBe null
-            updated shouldNotBe null
-        }
+        result shouldBe group
 
         result.permissions.add(permissionList[1])
         result = groupRepository.save(result)
