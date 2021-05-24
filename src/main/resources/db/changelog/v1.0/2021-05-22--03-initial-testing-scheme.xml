@@ -28,21 +28,7 @@
             <column name="scoredPercentage" type="decimal">
                 <constraints nullable="false"/>
             </column>
-            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-QuestionAnswer">
-        <createTable tableName="QuestionAnswer" schemaName="testing">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="PK_QuestionAnswer"/>
-            </column>
-            <column name="answerText" type="nvarchar(100)">
+            <column name="isPassed" type="bit">
                 <constraints nullable="false"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
@@ -63,12 +49,29 @@
                 <constraints references="analyses.UltrasoundImage(id)"
                              foreignKeyName="FK_TestingQuestion_UltrasoundImage"/>
             </column>
-            <column name="correctAnswerId" type="bigint">
+            <column name="questionText" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Vovk" id="2021-05-22--03-createTable-QuestionAnswer">
+        <createTable tableName="QuestionAnswer" schemaName="testing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_QuestionAnswer"/>
+            </column>
+            <column name="testingQuestionId" type="bigint">
                 <constraints nullable="false"
-                             references="testing.QuestionAnswer(id)"
+                             references="testing.TestingQuestion(id)"
                              foreignKeyName="FK_TestingQuestion_QuestionAnswer"/>
             </column>
-            <column name="questionText" type="nvarchar(200)">
+            <column name="answerText" type="nvarchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="created" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">

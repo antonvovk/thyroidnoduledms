@@ -1,6 +1,7 @@
 package com.antonvovk.ThyroidNoduleDMS.db.analyses.model
 
 import com.antonvovk.ThyroidNoduleDMS.db.models.BaseAuditEntity
+import com.antonvovk.ThyroidNoduleDMS.db.testing.models.TestingQuestion
 import javax.persistence.*
 
 @Entity
@@ -20,4 +21,7 @@ data class UltrasoundImage(
     @ManyToOne
     @JoinColumn(name = "ultrasoundAnalysisId")
     lateinit var ultrasoundAnalysis: UltrasoundAnalysis
+
+    @OneToOne(mappedBy = "ultrasoundImage")
+    val testingQuestion: TestingQuestion? = null
 }
