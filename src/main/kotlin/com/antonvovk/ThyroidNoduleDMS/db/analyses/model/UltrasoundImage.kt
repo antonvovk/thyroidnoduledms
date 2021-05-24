@@ -19,5 +19,5 @@ data class UltrasoundImage(
 
     @ManyToOne
     @JoinColumn(name = "ultrasoundAnalysisId")
-    private lateinit var ultrasoundAnalysis: UltrasoundAnalysis
+    lateinit var ultrasoundAnalysis: UltrasoundAnalysis
 }

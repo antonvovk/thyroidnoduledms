@@ -17,7 +17,7 @@ data class PatientInfo(
 
     @OneToOne
     @JoinColumn(name = "analysisId")
-    private lateinit var analysis: Analysis
+    lateinit var analysis: Analysis
 }
 
 enum class Sex {

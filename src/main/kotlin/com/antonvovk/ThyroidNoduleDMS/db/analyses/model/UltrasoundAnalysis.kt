@@ -18,6 +18,10 @@ data class UltrasoundAnalysis(
     @Enumerated(EnumType.STRING)
     var shape: NoduleShape,
 
+    @Column(name = "contours")
+    @Enumerated(EnumType.STRING)
+    var contours: NoduleContours,
+
     @Column(name = "echogenicity")
     @Enumerated(EnumType.STRING)
     var echogenicity: NoduleEchogenicity,
@@ -50,13 +54,18 @@ data class UltrasoundAnalysis(
     @Enumerated(EnumType.STRING)
     val structure: MutableList<NoduleStructure> = mutableListOf(),
 
-    @OneToMany(mappedBy = "ultrasoundAnalysis")
+    @OneToMany(mappedBy = "ultrasoundAnalysis", cascade = [CascadeType.ALL])
     val images: MutableList<UltrasoundImage> = mutableListOf()
 ) : BaseAuditEntity() {
 
     @OneToOne
     @JoinColumn(name = "analysisId")
-    private lateinit var analysis: Analysis
+    lateinit var analysis: Analysis
+
+    @PrePersist
+    fun prePersist() {
+        images.forEach { it.ultrasoundAnalysis = this }
+    }
 }
 
 enum class NoduleSize {

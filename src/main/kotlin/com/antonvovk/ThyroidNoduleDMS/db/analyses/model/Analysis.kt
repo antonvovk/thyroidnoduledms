@@ -16,12 +16,20 @@ data class Analysis(
     @JoinColumn(name = "updatedBy")
     var updatedBy: User,
 
-    @OneToOne(mappedBy = "analysis")
+    @OneToOne(mappedBy = "analysis", cascade = [CascadeType.ALL])
     val patientInfo: PatientInfo,
 
-    @OneToOne(mappedBy = "analysis")
+    @OneToOne(mappedBy = "analysis", cascade = [CascadeType.ALL])
     val biopsyAnalysis: BiopsyAnalysis,
 
-    @OneToOne(mappedBy = "analysis")
+    @OneToOne(mappedBy = "analysis", cascade = [CascadeType.ALL])
     val ultrasoundAnalysis: UltrasoundAnalysis
-) : BaseAuditEntity()
+) : BaseAuditEntity() {
+
+    @PrePersist
+    fun prePersist() {
+        patientInfo.analysis = this
+        biopsyAnalysis.analysis = this
+        ultrasoundAnalysis.analysis = this
+    }
+}
