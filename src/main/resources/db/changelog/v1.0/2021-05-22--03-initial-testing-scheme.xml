@@ -60,7 +60,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_TestingQuestion"/>
             </column>
             <column name="ultrasoundImageId" type="bigint">
-                <constraints references="analysis.UltrasoundImage(id)"
+                <constraints references="analyses.UltrasoundImage(id)"
                              foreignKeyName="FK_TestingQuestion_UltrasoundImage"/>
             </column>
             <column name="correctAnswerId" type="bigint">
