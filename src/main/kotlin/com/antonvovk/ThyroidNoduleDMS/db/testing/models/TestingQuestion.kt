@@ -11,12 +11,12 @@ data class TestingQuestion(
     @Column(name = "questionText")
     var questionText: String,
 
-    @OneToOne(mappedBy = "testingQuestion")
+    @OneToOne(mappedBy = "testingQuestion", cascade = [CascadeType.ALL])
     val correctAnswer: QuestionAnswer,
 
     @OneToOne
     @JoinColumn(name = "ultrasoundImageId")
-    var ultrasoundImage: UltrasoundImage
+    var ultrasoundImage: UltrasoundImage? = null
 ) : BaseAuditEntity() {
 
     @PrePersist
