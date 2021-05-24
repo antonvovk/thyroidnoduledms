@@ -46,7 +46,7 @@ data class UltrasoundAnalysis(
 
     @ElementCollection
     @CollectionTable(
-        schema = "analysis",
+        schema = "analyses",
         name = "NoduleStructure",
         joinColumns = [JoinColumn(name = "ultrasoundAnalysisId", nullable = false)]
     )

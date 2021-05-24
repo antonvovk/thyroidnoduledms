@@ -9,9 +9,10 @@ import javax.persistence.*
 data class QualificationTestingHistory(
 
     @ManyToOne
+    @JoinColumn(name = "userId")
     val user: User,
 
-    @Column(name = "scoredPercentage")
+    @Column(name = "scoredPercentage", columnDefinition = "DECIMAL")
     val scoredPercentage: Float,
 
     @Column(name = "isPassed")

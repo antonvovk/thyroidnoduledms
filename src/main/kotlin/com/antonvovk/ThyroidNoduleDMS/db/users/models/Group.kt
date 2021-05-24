@@ -19,6 +19,7 @@ data class Group(
     @ManyToMany
     @JoinTable(
         name = "GroupPermission",
+        schema = "users",
         joinColumns = [JoinColumn(name = "groupId")],
         inverseJoinColumns = [JoinColumn(name = "permissionId")]
     )

@@ -2,6 +2,7 @@ package com.antonvovk.ThyroidNoduleDMS.db.users.models
 
 import com.antonvovk.ThyroidNoduleDMS.db.analyses.model.Analysis
 import com.antonvovk.ThyroidNoduleDMS.db.models.BaseAuditEntity
+import com.antonvovk.ThyroidNoduleDMS.db.testing.models.QualificationTestingHistory
 import javax.persistence.*
 
 @Entity
@@ -32,6 +33,7 @@ data class User(
     @ManyToMany
     @JoinTable(
         name = "UserGroup",
+        schema = "users",
         joinColumns = [JoinColumn(name = "userId")],
         inverseJoinColumns = [JoinColumn(name = "groupId")]
     )
@@ -43,4 +45,7 @@ data class User(
 
     @OneToMany(mappedBy = "updatedBy")
     private val analysesUpdatedByUser: List<Analysis> = emptyList()
+
+    @OneToMany(mappedBy = "user")
+    private val qualificationTestingHistory: List<QualificationTestingHistory> = emptyList()
 }

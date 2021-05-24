@@ -11,7 +11,7 @@ data class QuestionAnswer(
     var answerText: String
 ) : BaseAuditEntity() {
 
-    @OneToMany
+    @OneToMany(mappedBy = "givenAnswer")
     private val answeredQuestions: List<AnsweredQuestion> = emptyList()
 
     @OneToOne

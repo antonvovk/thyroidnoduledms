@@ -8,6 +8,6 @@ spring:
   liquibase:
     enabled: true
 
-#  jpa: TODO
-#    hibernate:
-#      ddl-auto: validate
+  jpa:
+    hibernate:
+      ddl-auto: validate

@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "PatientInfo", schema = "analyses")
 data class PatientInfo(
 
-    @Column(name = "sex")
+    @Column(name = "sex", columnDefinition = "CHAR(1)")
     @Enumerated(EnumType.STRING)
     var sex: Sex,
 
