@@ -3,7 +3,6 @@ package com.antonvovk.ThyroidNoduleDMS.db.models
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
-import org.springframework.data.util.ProxyUtils
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -15,16 +14,7 @@ abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
 
-    // Method is final so that data classes could not automatically override it
-    final override fun equals(other: Any?): Boolean {
-        other ?: return false
-
-        if (this === other) return true
-
-        if (javaClass != ProxyUtils.getUserClass(other)) return false
-
-        return id == (other as BaseEntity).id
-    }
+    abstract override fun equals(other: Any?): Boolean
 
     abstract override fun hashCode(): Int
 }

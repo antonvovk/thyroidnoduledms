@@ -5,18 +5,18 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                             https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet author="Anton Vovk" id="2021-05-22--02-createSchema-analysis">
+    <changeSet author="Anton Vovk" id="2021-05-22--02-createSchema-analyses">
         <sql dbms="mssql">
-            IF schema_id('analysis') IS NULL
-            EXEC ('CREATE SCHEMA analysis');
+            IF schema_id('analyses') IS NULL
+            EXEC ('CREATE SCHEMA analyses');
         </sql>
         <sql dbms="h2">
-            CREATE SCHEMA IF NOT EXISTS analysis;
+            CREATE SCHEMA IF NOT EXISTS analyses;
         </sql>
     </changeSet>
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-Analysis">
-        <createTable tableName="Analysis" schemaName="analysis">
+        <createTable tableName="Analysis" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_Analysis"/>
             </column>
@@ -36,7 +36,7 @@
     </changeSet>
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-PatientInfo">
-        <createTable tableName="PatientInfo" schemaName="analysis">
+        <createTable tableName="PatientInfo" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_PatientInfo"/>
             </column>
@@ -61,7 +61,7 @@
 
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-BiopsyAnalysis">
-        <createTable tableName="BiopsyAnalysis" schemaName="analysis">
+        <createTable tableName="BiopsyAnalysis" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_BiopsyAnalysis"/>
             </column>
@@ -82,7 +82,7 @@
     </changeSet>
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-UltraSoundAnalysis">
-        <createTable tableName="UltraSoundAnalysis" schemaName="analysis">
+        <createTable tableName="UltraSoundAnalysis" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_UltraSoundAnalysis"/>
             </column>
@@ -130,7 +130,7 @@
     </changeSet>
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-NoduleStructure">
-        <createTable tableName="NoduleStructure" schemaName="analysis">
+        <createTable tableName="NoduleStructure" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_NoduleStructure"/>
             </column>
@@ -145,7 +145,7 @@
     </changeSet>
 
     <changeSet author="Anton Vovk" id="2021-05-22--02-createTable-UltrasoundImage">
-        <createTable tableName="UltrasoundImage" schemaName="analysis">
+        <createTable tableName="UltrasoundImage" schemaName="analyses">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="PK_UltrasoundImage"/>
             </column>
