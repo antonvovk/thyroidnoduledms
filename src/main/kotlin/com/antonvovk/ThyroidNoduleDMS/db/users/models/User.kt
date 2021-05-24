@@ -1,5 +1,6 @@
 package com.antonvovk.ThyroidNoduleDMS.db.users.models
 
+import com.antonvovk.ThyroidNoduleDMS.db.analyses.model.Analysis
 import com.antonvovk.ThyroidNoduleDMS.db.models.BaseAuditEntity
 import javax.persistence.*
 
@@ -35,4 +36,11 @@ data class User(
         inverseJoinColumns = [JoinColumn(name = "groupId")]
     )
     val groups: MutableList<Group> = mutableListOf()
-) : BaseAuditEntity()
+) : BaseAuditEntity() {
+
+    @OneToMany(mappedBy = "createdBy")
+    private val analysesCreatedByUser: List<Analysis> = emptyList()
+
+    @OneToMany(mappedBy = "updatedBy")
+    private val analysesUpdatedByUser: List<Analysis> = emptyList()
+}
