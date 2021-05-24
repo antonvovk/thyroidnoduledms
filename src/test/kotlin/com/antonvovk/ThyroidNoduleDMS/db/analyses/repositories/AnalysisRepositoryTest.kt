@@ -24,31 +24,37 @@ internal class AnalysisRepositoryTest @Autowired constructor(
     private val permissionRepository: PermissionRepository
 ) {
 
-    private val permissionList = mutableListOf(
+    private var permissionList = mutableListOf(
         Permission(name = "VIEW_ANALYSIS"),
         Permission(name = "ADD_ANALYSIS"),
         Permission(name = "EDIT_ANALYSIS")
     )
-    private val groupList = mutableListOf(
-        Group(name = "Group1", permissions = mutableListOf(permissionList[0], permissionList[1])),
-        Group(name = "Group2", permissions = mutableListOf(permissionList[0], permissionList[2]))
+    private var groupList = mutableListOf(
+        Group(name = "Group1"),
+        Group(name = "Group2")
     )
-    private val user = User(
+    private var user = User(
         firstName = "Anton",
         lastName = "Vovk",
         middleName = "Vasylyovych",
         workPlace = "VIG IT",
         email = "archwolf@protonmail.com",
         passwordHash = "as8gu23asdhkbasd98h1",
-        isQualificationTested = true,
-        groups = groupList
+        isQualificationTested = true
     )
 
     @Test
     fun `Test save with minimal model`() {
-        permissionRepository.saveAll(permissionList)
-        groupRepository.saveAll(groupList)
-        userRepository.save(user)
+        val permissions = permissionRepository.saveAll(permissionList.toMutableList())
+        groupList.forEach {
+            it.permissions.apply {
+                clear()
+                addAll(permissions)
+            }
+        }
+        val groups = groupRepository.saveAll(groupList)
+        val usr = user.copy(groups = groups)
+        user = userRepository.save(usr)
 
         val patientInfo = PatientInfo(
             sex = Sex.F,
@@ -68,13 +74,21 @@ internal class AnalysisRepositoryTest @Autowired constructor(
             autoimmuneThyroiditis = false,
             suspiciousLymphNodes = true,
             thirads = Thirads.AA,
+            structure = mutableListOf(NoduleStructure.AA),
+            images = mutableListOf(
+                UltrasoundImage(
+                    filename = "filename",
+                    height = 320,
+                    width = 480
+                )
+            )
         )
         val analysis = Analysis(
             createdBy = user,
             updatedBy = user,
             patientInfo = patientInfo,
             biopsyAnalysis = biopsyAnalysis,
-            ultrasoundAnalysis = ultrasoundAnalysis
+            ultrasoundAnalysis = ultrasoundAnalysis,
         )
 
         val result = analysisRepository.save(analysis)
@@ -83,9 +97,16 @@ internal class AnalysisRepositoryTest @Autowired constructor(
 
     @Test
     fun `Test save with full model`() {
-        permissionRepository.saveAll(permissionList)
-        groupRepository.saveAll(groupList)
-        userRepository.save(user)
+        val permissions = permissionRepository.saveAll(permissionList.toMutableList())
+        groupList.forEach {
+            it.permissions.apply {
+                clear()
+                addAll(permissions)
+            }
+        }
+        val groups = groupRepository.saveAll(groupList)
+        val usr = user.copy(groups = groups)
+        user = userRepository.save(usr)
 
         val patientInfo = PatientInfo(
             sex = Sex.F,
