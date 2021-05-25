@@ -36,7 +36,11 @@ class WebSecurityConfig(
             .disable()
             .authorizeRequests()
             .antMatchers(
-                "/api/authentication/authenticate", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"
+                "/api/authentication/login",
+                "/api/authentication/register",
+                "/swagger-ui.html",
+                "/swagger-ui/**",
+                "/v3/api-docs/**"
             )
             .permitAll()
             .anyRequest()

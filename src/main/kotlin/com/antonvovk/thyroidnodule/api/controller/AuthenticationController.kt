@@ -18,7 +18,7 @@ class AuthenticationController(
     private val userService: UserService
 ) {
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     fun createAuthenticationToken(@RequestBody authenticationDto: AuthenticationDto): JwtTokenDto {
         return authenticationService.authenticate(authenticationDto)

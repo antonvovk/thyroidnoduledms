@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,12 @@ export class LoginComponent {
   hide = true;
 
   form = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    username: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(8)])
   })
+
+  constructor(private authService: AuthService) {
+  }
 
   onHideClick() {
     this.hide = !this.hide
@@ -24,5 +28,7 @@ export class LoginComponent {
       this.form.markAsTouched()
       return
     }
+
+    this.authService.login(this.form.value)
   }
 }
