@@ -19,7 +19,7 @@ import org.springframework.test.context.ActiveProfiles
 @DataJpaTest
 @ActiveProfiles("test")
 internal class QualificationTestingResultRepositoryTest @Autowired constructor(
-    private val qualificationTestingHistoryRepository: QualificationTestingHistoryRepository,
+    private val qualificationTestingResultRepository: QualificationTestingResultRepository,
     private val qualificationTestingQuestionRepository: QualificationTestingQuestionRepository,
     private val userRepository: UserRepository,
     private val groupRepository: GroupRepository,
@@ -79,7 +79,7 @@ internal class QualificationTestingResultRepositoryTest @Autowired constructor(
             )
         )
 
-        val result = qualificationTestingHistoryRepository.save(qualificationTestingHistory)
+        val result = qualificationTestingResultRepository.save(qualificationTestingHistory)
         result shouldBe qualificationTestingHistory
     }
 }

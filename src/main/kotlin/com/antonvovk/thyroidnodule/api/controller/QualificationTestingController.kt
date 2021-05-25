@@ -24,6 +24,12 @@ class QualificationTestingController(
         return qualificationQuestionMapper.map(questions)
     }
 
+    @GetMapping("/result")
+    fun getAllTestingResults(): List<QualificationTestingResultDto> {
+        val qualificationTestingResult = qualificationTestingService.getAllTestingResults()
+        return qualificationTestingResultMapper.map(qualificationTestingResult)
+    }
+
     @PostMapping
     fun testQualification(@RequestBody body: List<QualificationAnsweredQuestionDto>): QualificationTestingResultDto {
         val answeredQuestions = qualificationAnsweredQuestionMapper.mapReverse(body)

@@ -8,5 +8,7 @@ interface QualificationTestingService {
 
     fun getAllQuestions(): List<QualificationQuestion>
 
+    fun getAllTestingResults(): List<QualificationTestingResult>
+
     fun testQualification(answeredQuestions: List<AnsweredQuestion>): QualificationTestingResult
 }
