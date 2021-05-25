@@ -20,7 +20,7 @@ import org.springframework.test.context.ActiveProfiles
 @ActiveProfiles("test")
 internal class QualificationTestingResultRepositoryTest @Autowired constructor(
     private val qualificationTestingResultRepository: QualificationTestingResultRepository,
-    private val qualificationTestingQuestionRepository: QualificationTestingQuestionRepository,
+    private val qualificationQuestionRepository: QualificationQuestionRepository,
     private val userRepository: UserRepository,
     private val groupRepository: GroupRepository,
     private val permissionRepository: PermissionRepository
@@ -65,7 +65,7 @@ internal class QualificationTestingResultRepositoryTest @Autowired constructor(
             )
         )
 
-        testingQuestion = qualificationTestingQuestionRepository.save(testingQuestion)
+        testingQuestion = qualificationQuestionRepository.save(testingQuestion)
 
         val qualificationTestingHistory = QualificationTestingResult(
             user = user,

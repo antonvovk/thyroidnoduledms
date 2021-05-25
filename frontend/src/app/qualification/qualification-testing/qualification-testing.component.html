@@ -1,0 +1,29 @@
+<div class="main-wrapper">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Перевірка кваліфікації</mat-card-title>
+    </mat-card-header>
+
+    <div class="example-form">
+      <mat-card-content>
+
+        <div *ngFor="let question of questions; index as i">
+          <div class="question">
+            {{question.text}}
+          </div>
+
+          <mat-form-field appearance="standard" class="example-full-width">
+            <input [formControl]="getControl(i)" matInput placeholder="Відповідь">
+            <mat-error>
+              Поле обов'язкове
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+      </mat-card-content>
+      <button (click)="onSubmit()" class="btn-block" color="primary" mat-stroked-button>Відправити</button>
+    </div>
+  </mat-card>
+</div>

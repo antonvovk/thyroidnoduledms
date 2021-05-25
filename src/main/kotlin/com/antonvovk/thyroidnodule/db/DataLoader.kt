@@ -1,5 +1,8 @@
 package com.antonvovk.thyroidnodule.db
 
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationAnswer
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
+import com.antonvovk.thyroidnodule.db.testing.repositories.QualificationQuestionRepository
 import com.antonvovk.thyroidnodule.db.users.models.Group
 import com.antonvovk.thyroidnodule.db.users.models.Permission
 import com.antonvovk.thyroidnodule.db.users.models.User
@@ -16,7 +19,8 @@ class DataLoader(
     private val permissionRepository: PermissionRepository,
     private val groupRepository: GroupRepository,
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val qualificationQuestionRepository: QualificationQuestionRepository
 ) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments?) {
@@ -44,5 +48,33 @@ class DataLoader(
         )
 
         userRepository.save(user)
+
+        val questions = listOf(
+            QualificationQuestion(
+                questionText = "Чи буває гомогенна структура вузла?",
+                correctAnswer = QualificationAnswer(
+                    answerText = "Так"
+                )
+            ),
+            QualificationQuestion(
+                questionText = "Скільки є рівнів класифікації по системі Bethesda?",
+                correctAnswer = QualificationAnswer(
+                    answerText = "5"
+                )
+            ),
+            QualificationQuestion(
+                questionText = "За ехогенністю вузли поділяються на гіпоехогенні і ... ?",
+                correctAnswer = QualificationAnswer(
+                    answerText = "ізоехогенні"
+                )
+            ),
+            QualificationQuestion(
+                questionText = "Скільки є типів еластограція вузлів?",
+                correctAnswer = QualificationAnswer(
+                    answerText = "3"
+                )
+            )
+        )
+        qualificationQuestionRepository.saveAll(questions)
     }
 }
