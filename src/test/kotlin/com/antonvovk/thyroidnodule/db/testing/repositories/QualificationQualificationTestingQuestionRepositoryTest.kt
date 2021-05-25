@@ -10,8 +10,8 @@ import org.springframework.test.context.ActiveProfiles
 
 @DataJpaTest
 @ActiveProfiles("test")
-internal class QualificationTestingQuestionRepositoryTest @Autowired constructor(
-    private val testingQuestionRepository: TestingQuestionRepository
+internal class QualificationQualificationTestingQuestionRepositoryTest @Autowired constructor(
+    private val qualificationTestingQuestionRepository: QualificationTestingQuestionRepository
 ) {
 
     @Test
@@ -23,7 +23,7 @@ internal class QualificationTestingQuestionRepositoryTest @Autowired constructor
             )
         )
 
-        val result = testingQuestionRepository.save(testingQuestion)
+        val result = qualificationTestingQuestionRepository.save(testingQuestion)
         result shouldBe testingQuestion
     }
 }
