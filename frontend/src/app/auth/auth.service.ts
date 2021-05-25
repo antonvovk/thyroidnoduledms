@@ -11,13 +11,15 @@ import { User } from "../_models/user.model";
 })
 export class AuthService {
 
+  token: string | undefined;
+
   constructor(private http: HttpClient) {
   }
 
   login(body: Authentication): void {
     this.http.post<JwtToken>(`${environment.apiUrl}/authentication/login`, body).subscribe(
       res => {
-        console.log(res);
+        this.token = res.token;
       }
     )
   }
