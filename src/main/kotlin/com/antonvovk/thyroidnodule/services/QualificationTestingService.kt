@@ -1,0 +1,3 @@
+package com.antonvovk.thyroidnodule.services
+
+interface QualificationTestingService
