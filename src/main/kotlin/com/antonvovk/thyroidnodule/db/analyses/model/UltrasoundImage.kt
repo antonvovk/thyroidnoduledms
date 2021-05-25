@@ -1,7 +1,7 @@
 package com.antonvovk.thyroidnodule.db.analyses.model
 
 import com.antonvovk.thyroidnodule.db.models.BaseAuditEntity
-import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingQuestion
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
 import javax.persistence.*
 
 @Entity
@@ -23,5 +23,5 @@ data class UltrasoundImage(
     lateinit var ultrasoundAnalysis: UltrasoundAnalysis
 
     @OneToOne(mappedBy = "ultrasoundImage")
-    val testingQuestion: QualificationTestingQuestion? = null
+    val testingQuestion: QualificationQuestion? = null
 }

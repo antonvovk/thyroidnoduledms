@@ -12,11 +12,11 @@ data class AnsweredQuestion(
 
     @ManyToOne
     @JoinColumn(name = "testingQuestionId")
-    val testingQuestion: QualificationTestingQuestion,
+    val testingQuestion: QualificationQuestion,
 
     @ManyToOne
     @JoinColumn(name = "givenAnswerId")
-    val givenAnswer: QuestionAnswer
+    val givenAnswer: QualificationAnswer
 ) : BaseAuditEntity() {
 
     @ManyToOne

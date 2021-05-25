@@ -1,9 +1,9 @@
 package com.antonvovk.thyroidnodule.db.testing.repositories
 
 import com.antonvovk.thyroidnodule.db.testing.models.AnsweredQuestion
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationAnswer
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingHistory
-import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingQuestion
-import com.antonvovk.thyroidnodule.db.testing.models.QuestionAnswer
 import com.antonvovk.thyroidnodule.db.users.models.Group
 import com.antonvovk.thyroidnodule.db.users.models.Permission
 import com.antonvovk.thyroidnodule.db.users.models.User
@@ -58,9 +58,9 @@ internal class QualificationTestingHistoryRepositoryTest @Autowired constructor(
         val usr = user.copy(groups = groups)
         user = userRepository.save(usr)
 
-        var testingQuestion = QualificationTestingQuestion(
+        var testingQuestion = QualificationQuestion(
             questionText = "Is this true",
-            correctAnswer = QuestionAnswer(
+            correctAnswer = QualificationAnswer(
                 answerText = "True"
             )
         )

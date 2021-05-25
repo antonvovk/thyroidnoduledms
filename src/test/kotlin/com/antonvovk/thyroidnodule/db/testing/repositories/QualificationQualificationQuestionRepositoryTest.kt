@@ -1,7 +1,7 @@
 package com.antonvovk.thyroidnodule.db.testing.repositories
 
-import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingQuestion
-import com.antonvovk.thyroidnodule.db.testing.models.QuestionAnswer
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationAnswer
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,15 +10,15 @@ import org.springframework.test.context.ActiveProfiles
 
 @DataJpaTest
 @ActiveProfiles("test")
-internal class QualificationQualificationTestingQuestionRepositoryTest @Autowired constructor(
+internal class QualificationQualificationQuestionRepositoryTest @Autowired constructor(
     private val qualificationTestingQuestionRepository: QualificationTestingQuestionRepository
 ) {
 
     @Test
     fun `Test save with full model`() {
-        val testingQuestion = QualificationTestingQuestion(
+        val testingQuestion = QualificationQuestion(
             questionText = "Is this true",
-            correctAnswer = QuestionAnswer(
+            correctAnswer = QualificationAnswer(
                 answerText = "True"
             )
         )

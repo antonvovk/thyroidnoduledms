@@ -6,13 +6,13 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "TestingQuestion", schema = "testing")
-data class QualificationTestingQuestion(
+data class QualificationQuestion(
 
     @Column(name = "questionText")
     var questionText: String,
 
     @OneToOne(mappedBy = "testingQuestion", cascade = [CascadeType.ALL])
-    val correctAnswer: QuestionAnswer,
+    val correctAnswer: QualificationAnswer,
 
     @OneToOne
     @JoinColumn(name = "ultrasoundImageId")

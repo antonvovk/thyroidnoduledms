@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "QuestionAnswer", schema = "testing")
-data class QuestionAnswer(
+data class QualificationAnswer(
 
     @Column(name = "answerText")
     var answerText: String
@@ -16,5 +16,5 @@ data class QuestionAnswer(
 
     @OneToOne
     @JoinColumn(name = "testingQuestionId")
-    lateinit var testingQuestion: QualificationTestingQuestion
+    lateinit var testingQuestion: QualificationQuestion
 }
