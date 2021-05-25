@@ -5,29 +5,29 @@
       <mat-card-title>Вхід в систему ThyroidNoduleDMS</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
       <mat-card-content>
-        <mat-form-field class="example-full-width" appearance="standard">
-          <input matInput placeholder="Емейл" type="email" formControlName="email">
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="email" matInput placeholder="Емейл" type="email">
           <mat-error>
             Некоректний формат емейлу
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="standard">
-          <input matInput placeholder="Пароль" [type]="hide ? 'password' : 'text'" formControlName="password">
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput placeholder="Пароль">
           <mat-error>
             Пароль має містити мінімум 8 символів
           </mat-error>
-          <button mat-icon-button matSuffix (click)="onHideClick()" [attr.aria-pressed]="hide" type="button">
+          <button (click)="onHideClick()" [attr.aria-pressed]="hide" mat-icon-button matSuffix type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
       </mat-card-content>
-      <button mat-stroked-button color="primary" class="btn-block" type="submit">Ввійти</button>
+      <button class="btn-block" color="primary" mat-stroked-button type="submit">Ввійти</button>
 
       <div class="not-registered">
-        Ще не зареєстровані? <a>Зареєструйтеся тут</a>
+        Ще не зареєстровані? <a routerLink="/auth/register">Зареєструйтеся тут</a>
       </div>
     </form>
   </mat-card>
