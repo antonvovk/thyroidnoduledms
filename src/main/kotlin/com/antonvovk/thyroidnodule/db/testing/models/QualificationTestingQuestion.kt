@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "TestingQuestion", schema = "testing")
-data class TestingQuestion(
+data class QualificationTestingQuestion(
 
     @Column(name = "questionText")
     var questionText: String,

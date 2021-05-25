@@ -1,8 +1,8 @@
 package com.antonvovk.thyroidnodule.db.testing.repositories
 
-import com.antonvovk.thyroidnodule.db.testing.models.TestingQuestion
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingQuestion
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TestingQuestionRepository : JpaRepository<TestingQuestion, Long>
+interface TestingQuestionRepository : JpaRepository<QualificationTestingQuestion, Long>

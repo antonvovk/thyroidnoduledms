@@ -12,7 +12,7 @@ data class AnsweredQuestion(
 
     @ManyToOne
     @JoinColumn(name = "testingQuestionId")
-    val testingQuestion: TestingQuestion,
+    val testingQuestion: QualificationTestingQuestion,
 
     @ManyToOne
     @JoinColumn(name = "givenAnswerId")

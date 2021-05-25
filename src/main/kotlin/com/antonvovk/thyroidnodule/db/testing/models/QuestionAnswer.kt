@@ -16,5 +16,5 @@ data class QuestionAnswer(
 
     @OneToOne
     @JoinColumn(name = "testingQuestionId")
-    lateinit var testingQuestion: TestingQuestion
+    lateinit var testingQuestion: QualificationTestingQuestion
 }

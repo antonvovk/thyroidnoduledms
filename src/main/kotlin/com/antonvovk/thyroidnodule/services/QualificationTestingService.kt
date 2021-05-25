@@ -1,3 +1,8 @@
 package com.antonvovk.thyroidnodule.services
 
-interface QualificationTestingService
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingQuestion
+
+interface QualificationTestingService {
+
+    fun getAllQuestions(): List<QualificationTestingQuestion>
+}
