@@ -21,5 +21,5 @@ data class AnsweredQuestion(
 
     @ManyToOne
     @JoinColumn(name = "testingHistoryId")
-    lateinit var qualificationTestingHistory: QualificationTestingHistory
+    lateinit var qualificationTestingHistory: QualificationTestingResult
 }

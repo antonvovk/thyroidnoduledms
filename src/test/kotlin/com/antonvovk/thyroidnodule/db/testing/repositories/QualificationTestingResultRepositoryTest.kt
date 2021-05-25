@@ -3,7 +3,7 @@ package com.antonvovk.thyroidnodule.db.testing.repositories
 import com.antonvovk.thyroidnodule.db.testing.models.AnsweredQuestion
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationAnswer
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
-import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingHistory
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingResult
 import com.antonvovk.thyroidnodule.db.users.models.Group
 import com.antonvovk.thyroidnodule.db.users.models.Permission
 import com.antonvovk.thyroidnodule.db.users.models.User
@@ -18,7 +18,7 @@ import org.springframework.test.context.ActiveProfiles
 
 @DataJpaTest
 @ActiveProfiles("test")
-internal class QualificationTestingHistoryRepositoryTest @Autowired constructor(
+internal class QualificationTestingResultRepositoryTest @Autowired constructor(
     private val qualificationTestingHistoryRepository: QualificationTestingHistoryRepository,
     private val qualificationTestingQuestionRepository: QualificationTestingQuestionRepository,
     private val userRepository: UserRepository,
@@ -67,7 +67,7 @@ internal class QualificationTestingHistoryRepositoryTest @Autowired constructor(
 
         testingQuestion = qualificationTestingQuestionRepository.save(testingQuestion)
 
-        val qualificationTestingHistory = QualificationTestingHistory(
+        val qualificationTestingHistory = QualificationTestingResult(
             user = user,
             scoredPercentage = 0.75f,
             isPassed = true,

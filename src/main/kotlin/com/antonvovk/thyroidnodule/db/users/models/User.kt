@@ -2,7 +2,7 @@ package com.antonvovk.thyroidnodule.db.users.models
 
 import com.antonvovk.thyroidnodule.db.analyses.model.Analysis
 import com.antonvovk.thyroidnodule.db.models.BaseAuditEntity
-import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingHistory
+import com.antonvovk.thyroidnodule.db.testing.models.QualificationTestingResult
 import javax.persistence.*
 
 @Entity
@@ -47,5 +47,5 @@ data class User(
     private val analysesUpdatedByUser: List<Analysis> = emptyList()
 
     @OneToMany(mappedBy = "user")
-    private val qualificationTestingHistory: List<QualificationTestingHistory> = emptyList()
+    private val qualificationTestingHistory: List<QualificationTestingResult> = emptyList()
 }

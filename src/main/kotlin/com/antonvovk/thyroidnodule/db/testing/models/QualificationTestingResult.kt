@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "QualificationTestingHistory", schema = "testing")
-data class QualificationTestingHistory(
+data class QualificationTestingResult(
 
     @ManyToOne
     @JoinColumn(name = "userId")

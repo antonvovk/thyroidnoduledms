@@ -1,14 +1,14 @@
 package com.antonvovk.thyroidnodule.db.testing.mappers
 
-import com.antonvovk.thyroidnodule.api.dto.response.QualificationQuestionDto
-import com.antonvovk.thyroidnodule.common.OneWayMapper
+import com.antonvovk.thyroidnodule.api.dto.QualificationQuestionDto
+import com.antonvovk.thyroidnodule.common.TwoWayMapper
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.Mappings
 
 @Mapper(componentModel = "spring", uses = [QualificationAnswerMapper::class])
-interface QualificationQuestionMapper : OneWayMapper<QualificationQuestion, QualificationQuestionDto> {
+interface QualificationQuestionMapper : TwoWayMapper<QualificationQuestion, QualificationQuestionDto> {
 
     @Mappings(
         Mapping(target = "text", source = "questionText"),
