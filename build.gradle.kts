@@ -34,10 +34,15 @@ allOpen {
 }
 
 dependencies {
+    // Logger
+    implementation("org.slf4j", "slf4j-api", "1.7.30")
+
     // Spring boot
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("io.jsonwebtoken", "jjwt", "0.9.1")
 
     // Swagger
     implementation("org.springdoc", "springdoc-openapi-ui", springdocVersion)

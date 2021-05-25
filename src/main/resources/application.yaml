@@ -11,3 +11,20 @@ spring:
       ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+cors-mapping:
+  endpoints:
+    - endpoint-pattern: "/**"
+      allowed-methods:
+        - "GET"
+        - "POST"
+        - "HEAD"
+        - "OPTIONS"
+        - "PUT"
+        - "DELETE"
+      allowed-origins: "http://localhost:4200"
+      allowed-credentials: false
+
+jwt:
+  secret: 3bB-AxG9iZC8gb0K2iwpYLy2woirjk8_kiCRQ_xVMVi1l5LqX2bSINoXZi4zbKfNhT1VbqWMD2KQ0BFzW2ZqmA
+  validity: 3600000
