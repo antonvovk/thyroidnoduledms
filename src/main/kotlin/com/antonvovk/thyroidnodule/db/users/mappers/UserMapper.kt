@@ -12,7 +12,7 @@ interface UserMapper : TwoWayMapper<User, UserDto> {
 
     @Mappings(
         Mapping(target = "passwordHash", source = "password"),
-        Mapping(target = "groups", ignore = true)
+        Mapping(target = "groups", expression = "java(new ArrayList())")
     )
     override fun mapReverse(from: UserDto): User
 }

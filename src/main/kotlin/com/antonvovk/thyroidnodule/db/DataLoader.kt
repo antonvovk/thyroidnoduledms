@@ -33,6 +33,7 @@ class DataLoader(
 
         val groupList = mutableListOf(
             Group(name = "Administrators", permissions = permissionList),
+            Group(name = "Specialists", permissions = permissionList)
         )
         groupRepository.saveAll(groupList)
 

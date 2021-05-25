@@ -37,7 +37,7 @@ data class User(
         joinColumns = [JoinColumn(name = "userId")],
         inverseJoinColumns = [JoinColumn(name = "groupId")]
     )
-    val groups: MutableList<Group> = mutableListOf()
+    var groups: MutableList<Group> = mutableListOf()
 ) : BaseAuditEntity() {
 
     @OneToMany(mappedBy = "createdBy")
