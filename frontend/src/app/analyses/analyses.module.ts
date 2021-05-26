@@ -8,6 +8,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { ShareModule } from "../shared/share.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ShareModule
   ],
   providers: [
     AnalysesService
