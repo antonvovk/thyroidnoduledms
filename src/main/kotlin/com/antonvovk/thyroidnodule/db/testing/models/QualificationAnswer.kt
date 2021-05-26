@@ -11,8 +11,8 @@ data class QualificationAnswer(
     var answerText: String
 ) : BaseAuditEntity() {
 
-    @OneToMany(mappedBy = "givenAnswer")
-    private val answeredQuestions: List<AnsweredQuestion> = emptyList()
+    @OneToOne(mappedBy = "givenAnswer")
+    lateinit var answeredQuestion: AnsweredQuestion
 
     @OneToOne
     @JoinColumn(name = "testingQuestionId")

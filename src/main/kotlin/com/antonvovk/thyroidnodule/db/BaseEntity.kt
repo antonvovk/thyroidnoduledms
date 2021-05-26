@@ -12,7 +12,7 @@ abstract class BaseEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    var id: Long = 0
 
     abstract override fun equals(other: Any?): Boolean
 

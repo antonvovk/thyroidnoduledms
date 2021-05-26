@@ -11,4 +11,6 @@ class EntityNotFoundException(
     constructor(id: UUID, name: KClass<*>) : this(id.toString(), name.toString())
 
     constructor(id: String, name: KClass<*>) : this(id, name.toString())
+
+    constructor(id: Long, name: KClass<*>) : this(id.toString(), name.toString())
 }

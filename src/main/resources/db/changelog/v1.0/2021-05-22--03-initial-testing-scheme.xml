@@ -67,8 +67,7 @@
                 <constraints primaryKey="true" primaryKeyName="PK_QuestionAnswer"/>
             </column>
             <column name="testingQuestionId" type="bigint">
-                <constraints nullable="false"
-                             references="testing.TestingQuestion(id)"
+                <constraints references="testing.TestingQuestion(id)"
                              foreignKeyName="FK_TestingQuestion_QuestionAnswer"/>
             </column>
             <column name="answerText" type="nvarchar(100)">

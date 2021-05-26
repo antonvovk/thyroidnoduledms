@@ -16,4 +16,11 @@ interface QualificationQuestionMapper : TwoWayMapper<QualificationQuestion, Qual
         Mapping(target = "imageUrl", source = "ultrasoundImage.filename")
     )
     override fun map(from: QualificationQuestion): QualificationQuestionDto
+
+    @Mappings(
+        Mapping(target = "id", source = "id"),
+        Mapping(target = "questionText", source = "text"),
+        Mapping(target = "correctAnswer", source = "answer"),
+    )
+    override fun mapReverse(from: QualificationQuestionDto): QualificationQuestion
 }
