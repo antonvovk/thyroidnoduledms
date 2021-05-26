@@ -6,5 +6,5 @@ data class UserDto(
     val middleName: String,
     val workPlace: String,
     val email: String,
-    val password: String,
+    val password: String?,
 )

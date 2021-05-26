@@ -11,6 +11,16 @@ import org.mapstruct.Mappings
 interface UserMapper : TwoWayMapper<User, UserDto> {
 
     @Mappings(
+        Mapping(target = "firstName", source = "firstName"),
+        Mapping(target = "lastName", source = "lastName"),
+        Mapping(target = "middleName", source = "middleName"),
+        Mapping(target = "workPlace", source = "workPlace"),
+        Mapping(target = "email", source = "email"),
+        Mapping(target = "password", ignore = true),
+    )
+    override fun map(from: User): UserDto
+
+    @Mappings(
         Mapping(target = "passwordHash", source = "password"),
         Mapping(target = "groups", expression = "java(new ArrayList())")
     )

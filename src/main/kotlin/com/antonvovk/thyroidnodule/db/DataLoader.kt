@@ -1,5 +1,7 @@
 package com.antonvovk.thyroidnodule.db
 
+import com.antonvovk.thyroidnodule.db.analyses.model.*
+import com.antonvovk.thyroidnodule.db.analyses.repositories.AnalysisRepository
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationAnswer
 import com.antonvovk.thyroidnodule.db.testing.models.QualificationQuestion
 import com.antonvovk.thyroidnodule.db.testing.repositories.QualificationQuestionRepository
@@ -20,7 +22,8 @@ class DataLoader(
     private val groupRepository: GroupRepository,
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
-    private val qualificationQuestionRepository: QualificationQuestionRepository
+    private val qualificationQuestionRepository: QualificationQuestionRepository,
+    private val analysisRepository: AnalysisRepository
 ) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments?) {
@@ -77,5 +80,43 @@ class DataLoader(
             )
         )
         qualificationQuestionRepository.saveAll(questions)
+
+
+        val patientInfo = PatientInfo(
+            sex = Sex.F,
+            age = 22
+        )
+        val biopsyAnalysis = BiopsyAnalysis(
+            bethesdaLevel = BethesdaLevel.Class2
+        )
+        val ultrasoundAnalysis = UltrasoundAnalysis(
+            size = NoduleSize.AA,
+            hasConglomerate = true,
+            shape = NoduleShape.AA,
+            contours = NoduleContours.AA,
+            echogenicity = NoduleEchogenicity.AA,
+            vascularization = NoduleVascularization.AA,
+            elastography = NoduleElastography.AA,
+            autoimmuneThyroiditis = false,
+            suspiciousLymphNodes = true,
+            thirads = Thirads.AA,
+            structure = mutableListOf(NoduleStructure.AA),
+            images = mutableListOf(
+                UltrasoundImage(
+                    filename = "filename",
+                    height = 320,
+                    width = 480
+                )
+            )
+        )
+        val analysis = Analysis(
+            createdBy = user,
+            updatedBy = user,
+            patientInfo = patientInfo,
+            biopsyAnalysis = biopsyAnalysis,
+            ultrasoundAnalysis = ultrasoundAnalysis,
+        )
+
+        analysisRepository.save(analysis)
     }
 }

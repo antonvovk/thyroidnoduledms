@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'qualification',
     loadChildren: () => import('./qualification/qualification.module').then(m => m.QualificationModule)
+  },
+  {
+    path: 'analyses',
+    loadChildren: () => import('./analyses/analyses.module').then(m => m.AnalysesModule)
   }
 ];
 
