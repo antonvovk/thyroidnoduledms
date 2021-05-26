@@ -1,1 +1,103 @@
-<p>all-analyses works!</p>
+<div class="wrapper">
+  <div class="title">
+    База медичних данних
+  </div>
+
+  <div class="mat-elevation-z4 wrapper">
+    <mat-table [dataSource]="analyses">
+      <ng-container matColumnDef="sex">
+        <mat-header-cell *matHeaderCellDef>Стать</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.patientInfo.sex}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <mat-header-cell *matHeaderCellDef>Вік</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.patientInfo.age}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <mat-header-cell *matHeaderCellDef>Розмір вузла</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.size}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hasConglomerate">
+        <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="shape">
+        <mat-header-cell *matHeaderCellDef>Форма вузла</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.shape}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contours">
+        <mat-header-cell *matHeaderCellDef>Структура вузла</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.contours}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="structure">
+        <mat-header-cell *matHeaderCellDef>Структура вузла</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.structure}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="echogenicity">
+        <mat-header-cell *matHeaderCellDef>Ехогеннісь</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.echogenicity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="vascularization">
+        <mat-header-cell *matHeaderCellDef>Васкуляризація</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.vascularization}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="elastography">
+        <mat-header-cell *matHeaderCellDef>Еластограція</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.elastography}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="autoimmuneThyroiditis">
+        <mat-header-cell *matHeaderCellDef>Аутоімунний тиреоїдит</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.autoimmuneThyroiditis}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="suspiciousLymphNodes">
+        <mat-header-cell *matHeaderCellDef>Підозрілі лімфатичні вузли</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.suspiciousLymphNodes}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="thirads">
+        <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="bethesdaLevel">
+        <mat-header-cell *matHeaderCellDef>Класифікація вузлів після (ТАБ) по Bethesda</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.biopsyAnalysis.bethesdaLevel}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef>Додано користувачем</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.createdBy.firstName}} {{element.createdBy.lastName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedBy">
+        <mat-header-cell *matHeaderCellDef>Востаннє змінено користувачем</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.updatedBy.firstName}} {{element.updatedBy.lastName}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="mat-paginator-sticky">
+    <div style="margin-left: 20px">
+      <button color="primary" mat-raised-button>
+        <mat-icon>add</mat-icon>
+        Додати
+      </button>
+    </div>
+    <div>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
