@@ -9,21 +9,23 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { ShareModule } from "../shared/share.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 
 @NgModule({
   declarations: [
     AllAnalysesComponent
   ],
-  imports: [
-    CommonModule,
-    AnalysesRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatIconModule,
-    ShareModule
-  ],
+    imports: [
+        CommonModule,
+        AnalysesRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatIconModule,
+        ShareModule,
+        TranslateModule
+    ],
   providers: [
     AnalysesService
   ]

@@ -1,16 +1,14 @@
-<app-header>
-
-</app-header>
 <div class="wrapper">
+  <app-header></app-header>
   <div class="title">
     База медичних данних
   </div>
 
-  <div class="mat-elevation-z4 wrapper">
+  <div class="wrapper">
     <mat-table [dataSource]="analyses">
       <ng-container matColumnDef="sex">
         <mat-header-cell *matHeaderCellDef>Стать</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.patientInfo.sex}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.patientInfo.sex | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="age">
@@ -20,63 +18,66 @@
 
       <ng-container matColumnDef="size">
         <mat-header-cell *matHeaderCellDef>Розмір вузла</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.size}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.size | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="hasConglomerate">
         <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate}} </mat-cell>
+        <mat-cell
+          *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate.toString() | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="shape">
         <mat-header-cell *matHeaderCellDef>Форма вузла</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.shape}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.shape | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="contours">
         <mat-header-cell *matHeaderCellDef>Структура вузла</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.contours}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.contours | translate}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="structure">
-        <mat-header-cell *matHeaderCellDef>Структура вузла</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.structure}} </mat-cell>
-      </ng-container>
+<!--      <ng-container matColumnDef="structure">-->
+<!--        <mat-header-cell *matHeaderCellDef>Структура вузла</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.structure | translate}} </mat-cell>-->
+<!--      </ng-container>-->
 
       <ng-container matColumnDef="echogenicity">
         <mat-header-cell *matHeaderCellDef>Ехогеннісь</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.echogenicity}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.echogenicity | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="vascularization">
         <mat-header-cell *matHeaderCellDef>Васкуляризація</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.vascularization}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.vascularization | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="elastography">
         <mat-header-cell *matHeaderCellDef>Еластограція</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.elastography}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.elastography | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="autoimmuneThyroiditis">
         <mat-header-cell *matHeaderCellDef>Аутоімунний тиреоїдит</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.autoimmuneThyroiditis}} </mat-cell>
+        <mat-cell
+          *matCellDef="let element">{{element.ultrasoundAnalysis.autoimmuneThyroiditis.toString() | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="suspiciousLymphNodes">
         <mat-header-cell *matHeaderCellDef>Підозрілі лімфатичні вузли</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.suspiciousLymphNodes}} </mat-cell>
+        <mat-cell
+          *matCellDef="let element">{{element.ultrasoundAnalysis.suspiciousLymphNodes.toString() | translate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="thirads">
         <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads}} </mat-cell>
+        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads | translate}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="bethesdaLevel">
-        <mat-header-cell *matHeaderCellDef>Класифікація вузлів після (ТАБ) по Bethesda</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.biopsyAnalysis.bethesdaLevel}} </mat-cell>
-      </ng-container>
+<!--      <ng-container matColumnDef="bethesdaLevel">-->
+<!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів після (ТАБ) по Bethesda</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let element">{{element.biopsyAnalysis.bethesdaLevel | translate}} </mat-cell>-->
+<!--      </ng-container>-->
 
       <ng-container matColumnDef="createdBy">
         <mat-header-cell *matHeaderCellDef>Додано користувачем</mat-header-cell>

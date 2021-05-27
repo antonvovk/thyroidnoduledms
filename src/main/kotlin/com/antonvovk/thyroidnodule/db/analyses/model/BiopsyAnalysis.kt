@@ -18,7 +18,9 @@ data class BiopsyAnalysis(
 }
 
 enum class BethesdaLevel {
-    Class2,
-    Class3,
-    Class4
+    CLASS2,
+    CLASS3,
+    CLASS4,
+    CLASS5,
+    CLASS6
 }

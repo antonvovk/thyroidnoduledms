@@ -4,47 +4,62 @@ export enum Sex {
 }
 
 export enum BethesdaLevel {
-  Class2 = "Class2",
-  Class3 = "Class3",
-  Class4 = "Class4"
+  CLASS2 = "CLASS2",
+  CLASS3 = "CLASS3",
+  CLASS4 = "CLASS4",
+  CLASS5 = "CLASS5",
+  CLASS6 = "CLASS6"
 }
 
 export enum NoduleSize {
-  AA = "AA"
-
+  LESS_THAN_ONE = "LESS_THAN_ONE",
+  BETWEEN_ONE_AND_TWO = "BETWEEN_ONE_AND_TWO",
+  MORE_THAN_TWO = "MORE_THAN_TWO"
 }
 
 export enum NoduleShape {
-  AA = "AA"
-
+  OVAL = "OVAL",
+  ROUND = "ROUND",
+  VERTICAL = "VERTICAL",
+  IRREGULAR = "IRREGULAR"
 }
 
 export enum NoduleContours {
-  AA = "AA"
-
+  CLEAR_EVEN = "CLEAR_EVEN",
+  CLEAR_UNEVEN = "CLEAR_UNEVEN",
+  FUZZY_EVEN = "FUZZY_EVEN",
+  FUZZY_UNEVEN = "FUZZY_UNEVEN"
 }
 
 export enum NoduleEchogenicity {
-  AA = "AA"
-
+  HYPOECHOIC = "HYPOECHOIC",
+  ISOECHOIC = "ISOECHOIC"
 }
 
 export enum NoduleVascularization {
-  AA = "AA"
-
+  CENTRAL = "CENTRAL",
+  PERIPHERAL = "PERIPHERAL",
+  MIXED = "MIXED"
 }
 
 export enum NoduleElastography {
-  AA = "AA"
-
+  TYPE2 = "TYPE2",
+  TYPE3 = "TYPE3",
+  TYPE4 = "TYPE4"
 }
 
 export enum Thirads {
-  AA = "AA"
-
+  CLASS2 = "CLASS2",
+  CLASS3 = "CLASS3",
+  CLASS4 = "CLASS4"
 }
 
 export enum NoduleStructure {
-  AA = "AA"
-
+  HOMOGENEOUS = "HOMOGENEOUS",
+  HETEROGENEOUS = "HETEROGENEOUS",
+  SPONGY = "SPONGY",
+  INHOMOGENEOUS_DUE_TO_CENTRAL_CYSTS = "INHOMOGENEOUS_DUE_TO_CENTRAL_CYSTS",
+  INHOMOGENEOUS_DUE_TO_PERIPHERAL_CYSTS = "INHOMOGENEOUS_DUE_TO_PERIPHERAL_CYSTS",
+  MACROCALCINATES = "MACROCALCINATES",
+  MICROCALCINATES = "MICROCALCINATES"
 }

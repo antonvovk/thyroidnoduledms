@@ -69,33 +69,54 @@ data class UltrasoundAnalysis(
 }
 
 enum class NoduleSize {
-    AA
+    LESS_THAN_ONE,
+    BETWEEN_ONE_AND_TWO,
+    MORE_THAN_TWO
 }
 
 enum class NoduleShape {
-    AA
+    OVAL,
+    ROUND,
+    VERTICAL,
+    IRREGULAR
 }
 
 enum class NoduleContours {
-    AA
+    CLEAR_EVEN,
+    CLEAR_UNEVEN,
+    FUZZY_EVEN,
+    FUZZY_UNEVEN
 }
 
 enum class NoduleEchogenicity {
-    AA
+    HYPOECHOIC,
+    ISOECHOIC
 }
 
 enum class NoduleVascularization {
-    AA
+    CENTRAL,
+    PERIPHERAL,
+    MIXED
 }
 
 enum class NoduleElastography {
-    AA
+    TYPE2,
+    TYPE3,
+    TYPE4
 }
 
 enum class Thirads {
-    AA
+    CLASS2,
+    CLASS3,
+    CLASS4
 }
 
 enum class NoduleStructure {
-    AA
+    HOMOGENEOUS,
+    HETEROGENEOUS,
+    SPONGY,
+    INHOMOGENEOUS_DUE_TO_CENTRAL_CYSTS,
+    INHOMOGENEOUS_DUE_TO_PERIPHERAL_CYSTS,
+    MACROCALCINATES,
+    MICROCALCINATES
 }

@@ -87,20 +87,20 @@ class DataLoader(
             age = 22
         )
         val biopsyAnalysis = BiopsyAnalysis(
-            bethesdaLevel = BethesdaLevel.Class2
+            bethesdaLevel = BethesdaLevel.CLASS2
         )
         val ultrasoundAnalysis = UltrasoundAnalysis(
-            size = NoduleSize.AA,
+            size = NoduleSize.LESS_THAN_ONE,
             hasConglomerate = true,
-            shape = NoduleShape.AA,
-            contours = NoduleContours.AA,
-            echogenicity = NoduleEchogenicity.AA,
-            vascularization = NoduleVascularization.AA,
-            elastography = NoduleElastography.AA,
+            shape = NoduleShape.OVAL,
+            contours = NoduleContours.CLEAR_UNEVEN,
+            echogenicity = NoduleEchogenicity.ISOECHOIC,
+            vascularization = NoduleVascularization.MIXED,
+            elastography = NoduleElastography.TYPE3,
             autoimmuneThyroiditis = false,
             suspiciousLymphNodes = true,
-            thirads = Thirads.AA,
-            structure = mutableListOf(NoduleStructure.AA),
+            thirads = Thirads.CLASS4,
+            structure = mutableListOf(NoduleStructure.HOMOGENEOUS, NoduleStructure.INHOMOGENEOUS_DUE_TO_CENTRAL_CYSTS),
             images = mutableListOf(
                 UltrasoundImage(
                     filename = "filename",
