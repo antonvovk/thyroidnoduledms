@@ -23,4 +23,10 @@ export class AnalysesService {
   update(analysis: Analysis): Observable<any> {
     return this.http.put(this.API_URL, analysis)
   }
+
+  postFile(fileToUpload: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    return this.http.post(`${environment.apiUrl}/files`, formData)
+  }
 }

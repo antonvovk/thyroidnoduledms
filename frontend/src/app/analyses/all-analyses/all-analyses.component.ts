@@ -78,4 +78,14 @@ export class AllAnalysesComponent implements OnInit {
       }
     });
   }
+
+  onFileSelected(event: Event) {
+    // @ts-ignore
+    const file:File = event.target.files[0];
+
+    if (file) {
+      const upload$ = this.analysesService.postFile(file)
+      upload$.subscribe();
+    }
+  }
 }
