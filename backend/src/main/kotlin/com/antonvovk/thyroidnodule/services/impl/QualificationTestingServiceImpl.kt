@@ -35,14 +35,19 @@ class QualificationTestingServiceImpl(
         }
 
         val sum = questions.map { question ->
-            if (question.testingQuestion.correctAnswer.answerText == question.givenAnswer.answerText) 1 else 0
+            if (question.givenAnswer.answerText.lowercase()
+                    .contains(question.testingQuestion.correctAnswer.answerText.lowercase())
+            ) 1 else 0
         }.sum()
 
-        val percentage = sum / questions.size * 100f
-        val isPassed = percentage >= 70
+        val percentage = sum.toFloat() / questions.size * 100f
+        val isPassed = percentage >= 70f
         val username = SecurityContextHolder.getContext().authentication.principal as String
         val user = userRepository.findByEmail(username)
             ?: throw EntityNotFoundException(username, User::class)
+
+        user.isQualificationTested = isPassed
+        userRepository.save(user)
 
         return qualificationTestingResultRepository.save(
             QualificationTestingResult(

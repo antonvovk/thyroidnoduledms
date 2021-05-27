@@ -14,6 +14,7 @@ export class QualificationTestingComponent implements OnInit {
 
   form = new FormArray([])
   questions: QualificationQuestion[] = []
+  qualificationResult: any
 
   constructor(private qualificationService: QualificationService) {
   }
@@ -53,6 +54,7 @@ export class QualificationTestingComponent implements OnInit {
     console.log(answeredQuestions);
     this.qualificationService.testQualification(answeredQuestions).subscribe(res => {
       console.log(res);
+      this.qualificationResult = res
     })
   }
 }

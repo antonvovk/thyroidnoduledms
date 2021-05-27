@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { Authentication } from "../_models/authentication.model";
 import { JwtToken } from "../_models/jwt-token.model";
 import { environment } from "../../environments/environment";
@@ -38,7 +37,7 @@ export class AuthService {
     return this._user
   }
 
-  login(body: Authentication): void {
+  login(body: Authentication, url: string[] = ['analyses']): void {
     this.http.post<JwtToken>(`${environment.apiUrl}/authentication/login`, body).subscribe(
       res => {
         if (res.token && res.user) {
@@ -48,18 +47,23 @@ export class AuthService {
           localStorage.setItem('token', res.token)
           localStorage.setItem('user', JSON.stringify(res.user))
 
-          this.router.navigate(['analyses'])
+          this.router.navigate(url)
         }
       }
     )
   }
 
-  register(body: User) {
-    bcrypt.hash(body.password, 12).then(hashedPass => {
+  register(body: User): void {
+    bcrypt.hash(body.password, 10).then(hashedPass => {
       this.http.post(`${environment.apiUrl}/authentication/register`, {
         user: body,
         passwordHash: hashedPass
       }).subscribe(() => {
+        this.login(<Authentication>{
+            username: body.email,
+            password: body.password
+          },
+          ['qualification', 'testing'])
       })
     });
   }
