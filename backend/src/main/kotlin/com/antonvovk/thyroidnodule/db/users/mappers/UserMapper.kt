@@ -1,5 +1,6 @@
 package com.antonvovk.thyroidnodule.db.users.mappers
 
+import com.antonvovk.thyroidnodule.api.dto.RegistrationDto
 import com.antonvovk.thyroidnodule.api.dto.UserDto
 import com.antonvovk.thyroidnodule.common.TwoWayMapper
 import com.antonvovk.thyroidnodule.db.users.models.User
@@ -23,4 +24,15 @@ interface UserMapper : TwoWayMapper<User, UserDto> {
         Mapping(target = "groups", expression = "java(new ArrayList())")
     )
     override fun mapReverse(from: UserDto): User
+
+    @Mappings(
+        Mapping(target = "firstName", source = "user.firstName"),
+        Mapping(target = "lastName", source = "user.lastName"),
+        Mapping(target = "middleName", source = "user.middleName"),
+        Mapping(target = "workPlace", source = "user.workPlace"),
+        Mapping(target = "email", source = "user.email"),
+        Mapping(target = "passwordHash", source = "passwordHash"),
+        Mapping(target = "groups", expression = "java(new ArrayList())")
+    )
+    fun map(from: RegistrationDto): User
 }

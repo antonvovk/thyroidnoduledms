@@ -21,8 +21,6 @@ class UserServiceImpl(
             ?: throw EntityNotFoundException("Specialists", Group::class)
 
         user.groups = mutableListOf(group)
-        user.passwordHash = passwordEncoder.encode(user.passwordHash)
-
         userRepository.save(user)
     }
 }

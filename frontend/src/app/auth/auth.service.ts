@@ -5,13 +5,16 @@ import { Authentication } from "../_models/authentication.model";
 import { JwtToken } from "../_models/jwt-token.model";
 import { environment } from "../../environments/environment";
 import { User } from "../_models/user.model";
+import { Router } from "@angular/router";
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     const token = localStorage.getItem('token')
     if (token) {
       this._token = token
@@ -44,12 +47,20 @@ export class AuthService {
 
           localStorage.setItem('token', res.token)
           localStorage.setItem('user', JSON.stringify(res.user))
+
+          this.router.navigate(['analyses'])
         }
       }
     )
   }
 
-  register(body: User): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/authentication/register`, body)
+  register(body: User) {
+    bcrypt.hash(body.password, 12).then(hashedPass => {
+      this.http.post(`${environment.apiUrl}/authentication/register`, {
+        user: body,
+        passwordHash: hashedPass
+      }).subscribe(() => {
+      })
+    });
   }
 }

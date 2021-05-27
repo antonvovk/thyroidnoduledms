@@ -2,13 +2,12 @@ package com.antonvovk.thyroidnodule.api.controller
 
 import com.antonvovk.thyroidnodule.api.dto.AuthenticationDto
 import com.antonvovk.thyroidnodule.api.dto.JwtTokenDto
-import com.antonvovk.thyroidnodule.api.dto.UserDto
+import com.antonvovk.thyroidnodule.api.dto.RegistrationDto
 import com.antonvovk.thyroidnodule.db.users.mappers.UserMapper
 import com.antonvovk.thyroidnodule.security.services.AuthenticationService
 import com.antonvovk.thyroidnodule.services.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-
 
 @RequestMapping("/api/authentication")
 @RestController
@@ -25,8 +24,8 @@ class AuthenticationController(
     }
 
     @PostMapping("/register")
-    fun register(@RequestBody body: UserDto) {
-        val user = userMapper.mapReverse(body)
+    fun register(@RequestBody body: RegistrationDto) {
+        val user = userMapper.map(body)
         userService.register(user)
     }
 }

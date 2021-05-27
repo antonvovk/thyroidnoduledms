@@ -33,6 +33,6 @@ export class RegisterComponent {
       return
     }
 
-    this.authService.register(this.form.value).subscribe(() => {})
+    this.authService.register(this.form.value);
   }
 }
