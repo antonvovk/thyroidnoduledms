@@ -1,0 +1,41 @@
+.title {
+  color: white;
+  font-weight: 700;
+  font-size: 5rem;
+  padding-left: 10%;
+  padding-top: 10%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 2%;
+  margin-right: 5%;
+
+  div:first-child {
+    margin-right: 20px;
+  }
+}
+
+.button {
+  color: #ffffff;
+  margin: 0;
+  align-self: center;
+  font-size: 1.5rem;
+  padding: 12px 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: 5px white solid;
+  transition: 300ms all cubic-bezier(.4, 0, .2, 1);
+  background-color: #e5e5e5;
+  cursor: pointer;
+  min-width: 200px;
+}

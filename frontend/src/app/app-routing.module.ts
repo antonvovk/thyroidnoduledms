@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth',
+    loadChildren: () => import('./start/start.module').then(m => m.StartModule)
   },
   {
     path: 'auth',
