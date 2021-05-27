@@ -52,7 +52,7 @@ data class UltrasoundAnalysis(
     )
     @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
-    val structure: MutableList<NoduleStructure> = mutableListOf(),
+    var structure: MutableList<NoduleStructure> = mutableListOf(),
 
     @OneToMany(mappedBy = "ultrasoundAnalysis", cascade = [CascadeType.ALL])
     val images: MutableList<UltrasoundImage> = mutableListOf()

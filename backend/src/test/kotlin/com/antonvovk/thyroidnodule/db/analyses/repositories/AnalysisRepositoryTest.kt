@@ -61,20 +61,20 @@ internal class AnalysisRepositoryTest @Autowired constructor(
             age = 22
         )
         val biopsyAnalysis = BiopsyAnalysis(
-            bethesdaLevel = BethesdaLevel.Class2
+            bethesdaLevel = BethesdaLevel.CLASS3
         )
         val ultrasoundAnalysis = UltrasoundAnalysis(
-            size = NoduleSize.AA,
+            size = NoduleSize.BETWEEN_ONE_AND_TWO,
             hasConglomerate = true,
-            shape = NoduleShape.AA,
-            contours = NoduleContours.AA,
-            echogenicity = NoduleEchogenicity.AA,
-            vascularization = NoduleVascularization.AA,
-            elastography = NoduleElastography.AA,
+            shape = NoduleShape.OVAL,
+            contours = NoduleContours.CLEAR_EVEN,
+            echogenicity = NoduleEchogenicity.ISOECHOIC,
+            vascularization = NoduleVascularization.PERIPHERAL,
+            elastography = NoduleElastography.TYPE2,
             autoimmuneThyroiditis = false,
             suspiciousLymphNodes = true,
-            thirads = Thirads.AA,
-            structure = mutableListOf(NoduleStructure.AA),
+            thirads = Thirads.CLASS2,
+            structure = mutableListOf(NoduleStructure.HETEROGENEOUS),
             images = mutableListOf(
                 UltrasoundImage(
                     filename = "filename",
@@ -113,20 +113,20 @@ internal class AnalysisRepositoryTest @Autowired constructor(
             age = 22
         )
         val biopsyAnalysis = BiopsyAnalysis(
-            bethesdaLevel = BethesdaLevel.Class2
+            bethesdaLevel = BethesdaLevel.CLASS4
         )
         val ultrasoundAnalysis = UltrasoundAnalysis(
-            size = NoduleSize.AA,
+            size = NoduleSize.LESS_THAN_ONE,
             hasConglomerate = true,
-            shape = NoduleShape.AA,
-            contours = NoduleContours.AA,
-            echogenicity = NoduleEchogenicity.AA,
-            vascularization = NoduleVascularization.AA,
-            elastography = NoduleElastography.AA,
+            shape = NoduleShape.IRREGULAR,
+            contours = NoduleContours.CLEAR_UNEVEN,
+            echogenicity = NoduleEchogenicity.HYPOECHOIC,
+            vascularization = NoduleVascularization.CENTRAL,
+            elastography = NoduleElastography.TYPE3,
             autoimmuneThyroiditis = false,
             suspiciousLymphNodes = true,
-            thirads = Thirads.AA,
-            structure = mutableListOf(NoduleStructure.AA),
+            thirads = Thirads.CLASS4,
+            structure = mutableListOf(NoduleStructure.HOMOGENEOUS),
             images = mutableListOf(
                 UltrasoundImage(
                     filename = "filename",

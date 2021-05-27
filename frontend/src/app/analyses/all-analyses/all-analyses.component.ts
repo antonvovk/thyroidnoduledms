@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalysesService } from "../analyses.service";
 import { Analysis } from "../../_models/analysis.model";
+import { MatDialog } from "@angular/material/dialog";
+import { AddEditAnalysisComponent } from "./add-edit-analisys/add-edit-analysis.component";
 
 @Component({
   selector: 'app-all-analyses',
@@ -25,11 +27,13 @@ export class AllAnalysesComponent implements OnInit {
     'thirads',
     // 'bethesdaLevel',
     'createdBy',
-    'updatedBy'
+    'updatedBy',
+    'actions'
   ];
   analyses: Analysis[] = [];
 
-  constructor(private analysesService: AnalysesService) {
+  constructor(private analysesService: AnalysesService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -37,5 +41,35 @@ export class AllAnalysesComponent implements OnInit {
       console.log(analyses);
       this.analyses = analyses
     })
+  }
+
+  addAnalysis(): void {
+    this.openAddEditDialog()
+  }
+
+  editAnalysis(element: Analysis): void {
+    this.openAddEditDialog(element)
+  }
+
+  private openAddEditDialog(element?: Analysis): void {
+    const dialogRef = this.dialog.open(AddEditAnalysisComponent, {
+      width: '600px',
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        const editMode = result.editMode as boolean
+        const analysis = result.data as Analysis
+
+        if (editMode) {
+          this.analysesService.update(analysis).subscribe(() => {
+          })
+        } else {
+          this.analysesService.create(analysis).subscribe(() => {
+          })
+        }
+      }
+    });
   }
 }

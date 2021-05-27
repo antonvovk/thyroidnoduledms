@@ -27,4 +27,4 @@ cors-mapping:
 
 jwt:
   secret: 3bB-AxG9iZC8gb0K2iwpYLy2woirjk8_kiCRQ_xVMVi1l5LqX2bSINoXZi4zbKfNhT1VbqWMD2KQ0BFzW2ZqmA
-  validity: 3600000
+  validity: 360000000

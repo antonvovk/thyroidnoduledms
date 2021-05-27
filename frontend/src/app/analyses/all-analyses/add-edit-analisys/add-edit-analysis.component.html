@@ -1,0 +1,153 @@
+<h1 mat-dialog-title>{{editMode ? "Редагування дослідження" : "Додавання дослідження"}}</h1>
+<div class="container" mat-dialog-content>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Вік</mat-label>
+      <input [formControl]="getControl('patientInfo', 'age')" matInput placeholder="Вік">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Введіть вік пацієнта</mat-hint>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <label id="example-radio-group-label">Виберіть стать пацієнта</label>
+    <mat-radio-group [formControl]="getControl('patientInfo', 'sex')" aria-labelledby="example-radio-group-label"
+                     class="example-radio-group"
+                     color="primary">
+      <mat-radio-button class="example-radio-button" value="M">Чоловіча</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="F">Жіноча</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Розмір вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'size')">
+        <mat-option *ngFor="let size of sizes" [value]="size">
+          {{size | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-checkbox [formControl]="getControl('ultrasoundAnalysis', 'hasConglomerate')" color="primary">Конгломерати
+    </mat-checkbox>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Форма вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'shape')">
+        <mat-option *ngFor="let shape of shapes" [value]="shape">
+          {{shape | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Контури вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'contours')">
+        <mat-option *ngFor="let contour of contours" [value]="contour">
+          {{contour | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ехогенність вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'echogenicity')">
+        <mat-option *ngFor="let echogenicity of echogenicities" [value]="echogenicity">
+          {{echogenicity | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Васкуляризація вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'vascularization')">
+        <mat-option *ngFor="let vascularization of vascularizations" [value]="vascularization">
+          {{vascularization | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Еластограція вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'elastography')">
+        <mat-option *ngFor="let elastography of elastographies" [value]="elastography">
+          {{elastography | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-checkbox [formControl]="getControl('ultrasoundAnalysis', 'autoimmuneThyroiditis')" class="row" color="primary">
+      Аутоімунний тиреоїдит
+    </mat-checkbox>
+  </div>
+
+  <div>
+    <mat-checkbox [formControl]="getControl('ultrasoundAnalysis', 'suspiciousLymphNodes')" class="row" color="primary">
+      Підозрілі лімфатичні вузли
+    </mat-checkbox>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Класифікація вузлів по Thirads</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'thirads')">
+        <mat-option *ngFor="let thirad of thirads" [value]="thirad">
+          {{thirad | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Структура вузла</mat-label>
+      <mat-select [formControl]="getControl('ultrasoundAnalysis', 'structure')" multiple>
+        <mat-option *ngFor="let structure of structures" [value]="structure">
+          {{structure | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Класифікація вузлів після (ТАБ) по Bethesda</mat-label>
+      <mat-select [formControl]="getControl('biopsyAnalysis', 'bethesdaLevel')">
+        <mat-option *ngFor="let bethesdaLevel of bethesdaLevels" [value]="bethesdaLevel">
+          {{bethesdaLevel | translate}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Поле не може бути порожнім</mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions style="display:flex; justify-content: flex-end">
+  <button (click)="onNoClick()" mat-button>Скасувати</button>
+  <button color="primary" mat-raised-button (click)="onYesClick()">Ок</button>
+</div>
