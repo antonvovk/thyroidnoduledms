@@ -67,4 +67,14 @@ export class AuthService {
       })
     });
   }
+
+  logout(): void {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+
+    this._token = null
+    this._user = null
+
+    this.router.navigate(['auth', 'login'])
+  }
 }
