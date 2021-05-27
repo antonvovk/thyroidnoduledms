@@ -11,17 +11,40 @@ import { User } from "../_models/user.model";
 })
 export class AuthService {
 
-  token: string | null;
-
   constructor(private http: HttpClient) {
-    this.token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
+    if (token) {
+      this._token = token
+    }
+
+    const user = localStorage.getItem('user')
+    if (user) {
+      this._user = JSON.parse(user)
+    }
+  }
+
+  private _token: string | null = null
+
+  get token(): string | null {
+    return this._token
+  }
+
+  private _user: User | null = null
+
+  get user(): User | null {
+    return this._user
   }
 
   login(body: Authentication): void {
     this.http.post<JwtToken>(`${environment.apiUrl}/authentication/login`, body).subscribe(
       res => {
-        this.token = res.token;
-        localStorage.setItem('token', res.token)
+        if (res.token && res.user) {
+          this._token = res.token;
+          this._user = res.user
+
+          localStorage.setItem('token', res.token)
+          localStorage.setItem('user', JSON.stringify(res.user))
+        }
       }
     )
   }

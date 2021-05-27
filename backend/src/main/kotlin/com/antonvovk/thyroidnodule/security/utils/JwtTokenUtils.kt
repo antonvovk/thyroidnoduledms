@@ -37,14 +37,12 @@ class JwtTokenUtils {
         return expiration.before(Date())
     }
 
-    fun generateToken(ullaId: String): String {
-        val claims: Map<String, Any> = HashMap()
-        return doGenerateToken(claims, ullaId)
+    fun generateToken(email: String): String {
+        return doGenerateToken(email)
     }
 
-    private fun doGenerateToken(claims: Map<String, Any>, subject: String): String {
+    private fun doGenerateToken(subject: String): String {
         return Jwts.builder()
-            .setClaims(claims)
             .setSubject(subject)
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + validity!!))
@@ -52,8 +50,8 @@ class JwtTokenUtils {
             .compact()
     }
 
-    fun validateToken(token: String?, ullaId: String): Boolean {
+    fun validateToken(token: String?, email: String): Boolean {
         val username = getUsernameFromToken(token)
-        return username == ullaId && !isTokenExpired(token)
+        return username == email && !isTokenExpired(token)
     }
 }

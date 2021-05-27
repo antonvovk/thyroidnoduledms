@@ -22,4 +22,11 @@ interface AnalysisMapper : TwoWayMapper<Analysis, AnalysisDto> {
         Mapping(target = "ultrasoundAnalysis", source = "ultrasoundAnalysis")
     )
     override fun map(from: Analysis): AnalysisDto
+
+    @Mappings(
+        Mapping(target = "patientInfo", source = "patientInfo"),
+        Mapping(target = "biopsyAnalysis", source = "biopsyAnalysis"),
+        Mapping(target = "ultrasoundAnalysis", source = "ultrasoundAnalysis")
+    )
+    override fun mapReverse(from: AnalysisDto): Analysis
 }

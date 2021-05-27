@@ -3,6 +3,7 @@ import { AnalysesService } from "../analyses.service";
 import { Analysis } from "../../_models/analysis.model";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEditAnalysisComponent } from "./add-edit-analisys/add-edit-analysis.component";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-all-analyses',
@@ -33,7 +34,8 @@ export class AllAnalysesComponent implements OnInit {
   analyses: Analysis[] = [];
 
   constructor(private analysesService: AnalysesService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -57,12 +59,16 @@ export class AllAnalysesComponent implements OnInit {
       data: element
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        const editMode = result.editMode as boolean
-        const analysis = result.data as Analysis
+    dialogRef.afterClosed().subscribe((analysis: Analysis) => {
+      if (analysis != null) {
+        const user = this.authService.user
+        if (user) {
+          analysis.createdBy = user
+          analysis.updatedBy = user
+        }
 
-        if (editMode) {
+        if (element) {
+          analysis.id = element.id
           this.analysesService.update(analysis).subscribe(() => {
           })
         } else {

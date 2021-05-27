@@ -3,6 +3,7 @@ package com.antonvovk.thyroidnodule.security.services.impl
 import com.antonvovk.thyroidnodule.api.dto.AuthenticationDto
 import com.antonvovk.thyroidnodule.api.dto.JwtTokenDto
 import com.antonvovk.thyroidnodule.api.exceptions.common.EntityNotFoundException
+import com.antonvovk.thyroidnodule.db.users.mappers.UserMapper
 import com.antonvovk.thyroidnodule.db.users.models.User
 import com.antonvovk.thyroidnodule.db.users.repositories.UserRepository
 import com.antonvovk.thyroidnodule.security.exception.BadCredentialsException
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Service
 class AuthenticationServiceImpl @Autowired constructor(
     private val jwtTokenUtils: JwtTokenUtils,
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val userMapper: UserMapper
 ) : AuthenticationService {
 
     override fun authenticate(authenticationDto: AuthenticationDto): JwtTokenDto {
@@ -28,7 +30,8 @@ class AuthenticationServiceImpl @Autowired constructor(
         }
 
         return JwtTokenDto(
-            jwtTokenUtils.generateToken(authenticationDto.username)
+            jwtTokenUtils.generateToken(authenticationDto.username),
+            userMapper.map(user)
         )
     }
 }

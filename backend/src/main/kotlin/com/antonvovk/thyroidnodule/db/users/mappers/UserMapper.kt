@@ -16,12 +16,10 @@ interface UserMapper : TwoWayMapper<User, UserDto> {
         Mapping(target = "middleName", source = "middleName"),
         Mapping(target = "workPlace", source = "workPlace"),
         Mapping(target = "email", source = "email"),
-        Mapping(target = "password", ignore = true),
     )
     override fun map(from: User): UserDto
 
     @Mappings(
-        Mapping(target = "passwordHash", source = "password"),
         Mapping(target = "groups", expression = "java(new ArrayList())")
     )
     override fun mapReverse(from: UserDto): User

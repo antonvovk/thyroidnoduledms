@@ -4,6 +4,7 @@ import { UltrasoundAnalysis } from "./ultrasound-analysis.model";
 import { PatientInfo } from "./patient-info.model";
 
 export interface Analysis {
+  id: number
   createdBy: User,
   updatedBy: User,
   patientInfo: PatientInfo,

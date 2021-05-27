@@ -10,7 +10,7 @@ data class Analysis(
 
     @ManyToOne
     @JoinColumn(name = "createdBy")
-    val createdBy: User,
+    var createdBy: User,
 
     @ManyToOne
     @JoinColumn(name = "updatedBy")

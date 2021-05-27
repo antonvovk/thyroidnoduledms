@@ -84,9 +84,6 @@ export class AddEditAnalysisComponent implements OnInit {
       return
     }
 
-    this.dialogRef.close({
-      editMode: this.editMode,
-      data: this.form.value as Analysis
-    })
+    this.dialogRef.close(this.form.value as Analysis)
   }
 }

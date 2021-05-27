@@ -3,19 +3,30 @@ package com.antonvovk.thyroidnodule.security.services.impl
 import com.antonvovk.thyroidnodule.api.exceptions.common.EntityNotFoundException
 import com.antonvovk.thyroidnodule.db.analyses.model.Analysis
 import com.antonvovk.thyroidnodule.db.analyses.repositories.AnalysisRepository
+import com.antonvovk.thyroidnodule.db.users.models.User
+import com.antonvovk.thyroidnodule.db.users.repositories.UserRepository
 import com.antonvovk.thyroidnodule.security.services.AnalysisService
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
 class AnalysisServiceImpl(
-    private val analysisRepository: AnalysisRepository
+    private val analysisRepository: AnalysisRepository,
+    private val userRepository: UserRepository
 ) : AnalysisService {
 
     override fun getAll(): List<Analysis> = analysisRepository.findAll()
 
     override fun create(analysis: Analysis) {
-        analysisRepository.save(analysis)
+        val username = SecurityContextHolder.getContext().authentication.principal as String
+        val user = userRepository.findByEmail(username)
+            ?: throw EntityNotFoundException(username, User::class)
+
+        analysisRepository.save(analysis.apply {
+            createdBy = user
+            updatedBy = user
+        })
     }
 
     override fun update(analysis: Analysis) {
@@ -24,6 +35,11 @@ class AnalysisServiceImpl(
             Analysis::class
         )
 
+        val username = SecurityContextHolder.getContext().authentication.principal as String
+        val user = userRepository.findByEmail(username)
+            ?: throw EntityNotFoundException(username, User::class)
+
+        entity.updatedBy = user
         entity.patientInfo.age = analysis.patientInfo.age
         entity.patientInfo.sex = analysis.patientInfo.sex
         entity.biopsyAnalysis.bethesdaLevel = analysis.biopsyAnalysis.bethesdaLevel

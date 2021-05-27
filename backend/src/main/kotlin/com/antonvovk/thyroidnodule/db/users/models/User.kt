@@ -25,7 +25,7 @@ data class User(
     var email: String,
 
     @Column(name = "passwordHash")
-    var passwordHash: String,
+    var passwordHash: String? = null,
 
     @Column(name = "isQualificationTested")
     var isQualificationTested: Boolean = false,

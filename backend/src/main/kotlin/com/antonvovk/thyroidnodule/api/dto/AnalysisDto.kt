@@ -1,6 +1,7 @@
 package com.antonvovk.thyroidnodule.api.dto
 
 data class AnalysisDto(
+    val id: Long,
     val createdBy: UserDto,
     val updatedBy: UserDto,
     val patientInfo: PatientInfoDto,
