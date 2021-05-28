@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div mat-dialog-actions style="display:flex; justify-content: space-between">
+  <div mat-dialog-actions style="display:flex; justify-content: space-between; padding-bottom: 40px;">
     <div>
       <input #fileUpload (change)="onFileSelected($event)" [hidden]="true" type="file">
 
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div style="display:flex; justify-content: flex-end">
+    <div style="display:flex; justify-content: flex-end;">
       <button (click)="onYesClick()" color="primary" mat-raised-button>Ок</button>
     </div>
   </div>

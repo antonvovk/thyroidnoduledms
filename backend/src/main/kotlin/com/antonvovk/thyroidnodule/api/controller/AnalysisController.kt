@@ -22,15 +22,15 @@ class AnalysisController(
     }
 
     @PostMapping
-    fun create(@RequestBody body: AnalysisDto) {
+    fun create(@RequestBody body: AnalysisDto): AnalysisDto {
         val analysis = analysisMapper.mapReverse(body)
-        analysisService.create(analysis)
+        return analysisMapper.map(analysisService.create(analysis))
     }
 
     @PutMapping
-    fun update(@RequestBody body: AnalysisDto) {
+    fun update(@RequestBody body: AnalysisDto): AnalysisDto {
         val analysis = analysisMapper.mapReverse(body)
-        analysisService.update(analysis)
+        return analysisMapper.map(analysisService.update(analysis))
     }
 
     @PostMapping("/{id}/image")

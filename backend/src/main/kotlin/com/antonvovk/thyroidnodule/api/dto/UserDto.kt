@@ -5,5 +5,7 @@ data class UserDto(
     val lastName: String,
     val middleName: String,
     val workPlace: String,
-    val email: String
+    val email: String,
+    val qualificationTestPassed: Boolean? = null,
+    val permissions: List<String>? = null
 )

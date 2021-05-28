@@ -41,7 +41,6 @@ export class AllAnalysesComponent implements OnInit {
 
   ngOnInit(): void {
     this.analysesService.getAll().subscribe(analyses => {
-      console.log(analyses);
       this.analyses = analyses
     })
   }
@@ -82,11 +81,15 @@ export class AllAnalysesComponent implements OnInit {
         }
 
         if (element) {
-          analysis.id = element.id
-          this.analysesService.update(analysis).subscribe(() => {
+          this.analysesService.update({...analysis, id: element.id}).subscribe((res) => {
+            let indx = this.analyses.findIndex(a => a.id == res.id)
+            this.analyses[indx] = res
+            this.analyses = [...this.analyses]
           })
         } else {
-          this.analysesService.create(analysis).subscribe(() => {
+          this.analysesService.create(analysis).subscribe((res) => {
+            this.analyses.push(res)
+            this.analyses = [...this.analyses]
           })
         }
       }

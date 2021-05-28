@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'analyses',
-    loadChildren: () => import('./analyses/analyses.module').then(m => m.AnalysesModule)
+    loadChildren: () => import('./analyses/analyses.module').then(m => m.AnalysesModule),
+    canLoad: [QualificationTestedGuard]
   }
 ];
 

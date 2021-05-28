@@ -17,12 +17,12 @@ export class AnalysesService {
     return this.http.get<Analysis[]>(this.API_URL);
   }
 
-  create(analysis: Analysis): Observable<any> {
-    return this.http.post(this.API_URL, analysis)
+  create(analysis: Analysis): Observable<Analysis> {
+    return this.http.post<Analysis>(this.API_URL, analysis)
   }
 
-  update(analysis: Analysis): Observable<any> {
-    return this.http.put(this.API_URL, analysis)
+  update(analysis: Analysis): Observable<Analysis> {
+    return this.http.put<Analysis>(this.API_URL, analysis)
   }
 
   postFile(fileToUpload: File): Observable<any> {

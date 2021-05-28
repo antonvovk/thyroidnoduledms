@@ -21,18 +21,18 @@ class AnalysisServiceImpl(
 
     override fun getAll(): List<Analysis> = analysisRepository.findAll()
 
-    override fun create(analysis: Analysis) {
+    override fun create(analysis: Analysis): Analysis {
         val username = SecurityContextHolder.getContext().authentication.principal as String
         val user = userRepository.findByEmail(username)
             ?: throw EntityNotFoundException(username, User::class)
 
-        analysisRepository.save(analysis.apply {
+        return analysisRepository.save(analysis.apply {
             createdBy = user
             updatedBy = user
         })
     }
 
-    override fun update(analysis: Analysis) {
+    override fun update(analysis: Analysis): Analysis {
         val entity = analysisRepository.findByIdOrNull(analysis.id) ?: throw EntityNotFoundException(
             analysis.id,
             Analysis::class
@@ -58,7 +58,7 @@ class AnalysisServiceImpl(
         entity.ultrasoundAnalysis.thirads = analysis.ultrasoundAnalysis.thirads
         entity.ultrasoundAnalysis.structure = analysis.ultrasoundAnalysis.structure
 
-        analysisRepository.save(entity)
+        return analysisRepository.save(entity)
     }
 
     override fun addImage(id: Long, image: UltrasoundImage): Long {

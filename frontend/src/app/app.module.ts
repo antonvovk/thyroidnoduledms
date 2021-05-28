@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
-import { AuthInterceptor } from "./auth/auth.interceptor";
+import { AuthInterceptor } from "./_interceptors/auth.interceptor";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { ErrorInterceptor } from "./auth/error.interceptor";
+import { ErrorInterceptor } from "./_interceptors/error.interceptor";
 import { ToastrModule } from "ngx-toastr";
+import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: ErrorInterceptor,
       multi: true,
     },
+    QualificationTestedGuard
   ],
   bootstrap: [AppComponent]
 })

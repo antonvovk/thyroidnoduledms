@@ -37,6 +37,11 @@ export class AuthService {
     return this._user
   }
 
+  qualify(qualificationTestPassed: boolean) {
+    this._user.qualificationTestPassed = qualificationTestPassed
+    localStorage.setItem('user', JSON.stringify(this._user))
+  }
+
   login(body: Authentication, url: string[] = ['analyses']): void {
     this.http.post<JwtToken>(`${environment.apiUrl}/authentication/login`, body).subscribe(
       res => {

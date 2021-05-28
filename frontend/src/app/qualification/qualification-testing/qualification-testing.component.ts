@@ -4,6 +4,7 @@ import { QualificationService } from "../qualification.service";
 import { QualificationQuestion } from "../../_models/qualification-question.mode";
 import { QualificationAnsweredQuestion } from "../../_models/qualification-answered-question.mode";
 import { QualificationGivenAnswer } from "../../_models/qualification-given-answer.model";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-qualification-testing',
@@ -16,7 +17,8 @@ export class QualificationTestingComponent implements OnInit {
   questions: QualificationQuestion[] = []
   qualificationResult: any
 
-  constructor(private qualificationService: QualificationService) {
+  constructor(private qualificationService: QualificationService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -55,6 +57,7 @@ export class QualificationTestingComponent implements OnInit {
     this.qualificationService.testQualification(answeredQuestions).subscribe(res => {
       console.log(res);
       this.qualificationResult = res
+      this.authService.qualify(res.passed)
     })
   }
 }

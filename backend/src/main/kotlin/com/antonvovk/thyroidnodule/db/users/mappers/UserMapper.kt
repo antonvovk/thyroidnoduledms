@@ -7,8 +7,9 @@ import com.antonvovk.thyroidnodule.db.users.models.User
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.Mappings
+import java.util.stream.Collectors
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", imports = [Collectors::class])
 interface UserMapper : TwoWayMapper<User, UserDto> {
 
     @Mappings(
@@ -17,6 +18,11 @@ interface UserMapper : TwoWayMapper<User, UserDto> {
         Mapping(target = "middleName", source = "middleName"),
         Mapping(target = "workPlace", source = "workPlace"),
         Mapping(target = "email", source = "email"),
+        Mapping(target = "qualificationTestPassed", source = "qualificationTested"),
+        Mapping(
+            target = "permissions",
+            expression = "java(from.getGroups().stream().flatMap(g -> g.getPermissions().stream()).map(p -> p.getName()).collect(Collectors.toList()))"
+        )
     )
     override fun map(from: User): UserDto
 

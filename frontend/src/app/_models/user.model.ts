@@ -4,5 +4,7 @@ export interface User {
   middleName: string
   workPlace: string
   email: string
-  password: string
+  password: string,
+  qualificationTestPassed: boolean,
+  permissions: string[]
 }

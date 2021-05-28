@@ -7,9 +7,9 @@ interface AnalysisService {
 
     fun getAll(): List<Analysis>
 
-    fun create(analysis: Analysis)
+    fun create(analysis: Analysis): Analysis
 
-    fun update(analysis: Analysis)
+    fun update(analysis: Analysis): Analysis
 
     fun addImage(id: Long, image: UltrasoundImage): Long
 
