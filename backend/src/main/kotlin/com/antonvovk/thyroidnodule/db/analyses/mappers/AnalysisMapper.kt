@@ -26,7 +26,9 @@ interface AnalysisMapper : TwoWayMapper<Analysis, AnalysisDto> {
     @Mappings(
         Mapping(target = "patientInfo", source = "patientInfo"),
         Mapping(target = "biopsyAnalysis", source = "biopsyAnalysis"),
-        Mapping(target = "ultrasoundAnalysis", source = "ultrasoundAnalysis")
+        Mapping(target = "ultrasoundAnalysis", source = "ultrasoundAnalysis"),
+        Mapping(target = "created", ignore = true),
+        Mapping(target = "updated", ignore = true)
     )
     override fun mapReverse(from: AnalysisDto): Analysis
 }
