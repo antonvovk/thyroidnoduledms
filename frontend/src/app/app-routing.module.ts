@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
+import { AuthGuard } from "./_guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -19,11 +20,12 @@ const routes: Routes = [
   {
     path: 'analyses',
     loadChildren: () => import('./analyses/analyses.module').then(m => m.AnalysesModule),
-    canLoad: [QualificationTestedGuard]
+    canLoad: [AuthGuard, QualificationTestedGuard]
   },
   {
     path: 'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+    canLoad: [AuthGuard]
   }
 ];
 

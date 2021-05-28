@@ -5,7 +5,7 @@ import { AuthService } from "../auth/auth.service";
 import { ToastrService } from "ngx-toastr";
 
 @Injectable()
-export class QualificationTestedGuard implements CanLoad {
+export class AuthGuard implements CanLoad {
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -14,12 +14,8 @@ export class QualificationTestedGuard implements CanLoad {
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.user == null) {
-      return false
-    }
-
-    if (!this.authService.user.qualificationTestPassed) {
-      this.toastr.warning("Ви ще не пройшли перевірку кваліфікації")
-      return this.router.createUrlTree(['qualification', 'testing'])
+      this.toastr.error("Помилка авторизації");
+      return this.router.createUrlTree(['auth', 'login'])
     }
 
     return true;

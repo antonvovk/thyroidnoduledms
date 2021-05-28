@@ -11,6 +11,7 @@ import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { ErrorInterceptor } from "./_interceptors/error.interceptor";
 import { ToastrModule } from "ngx-toastr";
 import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
+import { AuthGuard } from "./_guards/auth.guard";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: ErrorInterceptor,
       multi: true,
     },
+    AuthGuard,
     QualificationTestedGuard
   ],
   bootstrap: [AppComponent]
