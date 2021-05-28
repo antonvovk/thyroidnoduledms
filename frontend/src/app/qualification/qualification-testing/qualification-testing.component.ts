@@ -31,10 +31,6 @@ export class QualificationTestingComponent implements OnInit {
     })
   }
 
-  qualificationTestPassed(): boolean {
-    return this.authService.user.qualificationTestPassed
-  }
-
   getControl(index: number): FormControl {
     return this.form.at(index) as FormControl
   }

@@ -4,7 +4,7 @@
     База медичних данних
   </div>
 
-  <div class="wrapper">
+  <div class="wrapper" style="  margin-left: 60px; margin-right: 60px;">
     <mat-table [dataSource]="analyses">
       <ng-container matColumnDef="index">
         <mat-header-cell *matHeaderCellDef>Номер</mat-header-cell>
@@ -26,11 +26,11 @@
         <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.size | translate}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="hasConglomerate">
-        <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>
-        <mat-cell
-          *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate.toString() | translate}} </mat-cell>
-      </ng-container>
+<!--      <ng-container matColumnDef="hasConglomerate">-->
+<!--        <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>-->
+<!--        <mat-cell-->
+<!--          *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate.toString() | translate}} </mat-cell>-->
+<!--      </ng-container>-->
 
       <ng-container matColumnDef="shape">
         <mat-header-cell *matHeaderCellDef>Форма вузла</mat-header-cell>
@@ -74,10 +74,10 @@
           *matCellDef="let element">{{element.ultrasoundAnalysis.suspiciousLymphNodes.toString() | translate}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="thirads">
-        <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads | translate}} </mat-cell>
-      </ng-container>
+<!--      <ng-container matColumnDef="thirads">-->
+<!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>-->
+<!--        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads | translate}} </mat-cell>-->
+<!--      </ng-container>-->
 
       <!--      <ng-container matColumnDef="bethesdaLevel">-->
       <!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів після (ТАБ) по Bethesda</mat-header-cell>-->
