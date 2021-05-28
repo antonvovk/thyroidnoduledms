@@ -24,7 +24,7 @@
             <span>Сторінка користувача</span>
           </button>
 
-          <button mat-menu-item (click)="logout()">
+          <button mat-menu-item (click)="logout()" *ngIf="show()">
             <mat-icon>logout</mat-icon>
             <span>Вийти</span>
           </button>
