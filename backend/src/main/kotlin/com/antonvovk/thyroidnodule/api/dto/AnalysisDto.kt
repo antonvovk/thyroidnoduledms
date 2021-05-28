@@ -9,6 +9,6 @@ data class AnalysisDto(
     val patientInfo: PatientInfoDto,
     val biopsyAnalysis: BiopsyAnalysisDto,
     val ultrasoundAnalysis: UltrasoundAnalysisDto,
-    val created: LocalDateTime,
-    val updated: LocalDateTime
+    val created: LocalDateTime? = null,
+    val updated: LocalDateTime? = null
 )
