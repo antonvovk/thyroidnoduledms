@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { AddEditAnalysisComponent } from "./add-edit-analisys/add-edit-analysis.component";
 import { AuthService } from "../../auth/auth.service";
 import { AnalysisPhotosComponent } from "./analysis-photos/analysis-photos.component";
+import { PageEvent } from "@angular/material/paginator";
 
 @Component({
   selector: 'app-all-analyses',
@@ -14,6 +15,7 @@ import { AnalysisPhotosComponent } from "./analysis-photos/analysis-photos.compo
 export class AllAnalysesComponent implements OnInit {
 
   displayedColumns: string[] = [
+    'index',
     'sex',
     'age',
     'size',
@@ -33,6 +35,9 @@ export class AllAnalysesComponent implements OnInit {
     'actions'
   ];
   analyses: Analysis[] = [];
+  totalItems: number = 0;
+  pageIndex = 0
+  pageSize = 10
 
   constructor(private analysesService: AnalysesService,
               public dialog: MatDialog,
@@ -40,9 +45,7 @@ export class AllAnalysesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.analysesService.getAll().subscribe(analyses => {
-      this.analyses = analyses
-    })
+    this.fetchAnalysis()
   }
 
   addAnalysis(): void {
@@ -64,6 +67,19 @@ export class AllAnalysesComponent implements OnInit {
         console.log(analysis);
       }
     });
+  }
+
+  onPaginatorChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.fetchAnalysis()
+  }
+
+  private fetchAnalysis() {
+    this.analysesService.getAll(this.pageIndex, this.pageSize).subscribe(analyses => {
+      this.analyses = analyses.elements
+      this.totalItems = analyses.size
+    })
   }
 
   private openAddEditDialog(element?: Analysis): void {

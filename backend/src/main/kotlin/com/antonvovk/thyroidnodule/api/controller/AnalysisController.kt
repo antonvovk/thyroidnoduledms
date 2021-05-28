@@ -1,10 +1,12 @@
 package com.antonvovk.thyroidnodule.api.controller
 
 import com.antonvovk.thyroidnodule.api.dto.AnalysisDto
+import com.antonvovk.thyroidnodule.api.dto.PageDto
 import com.antonvovk.thyroidnodule.api.dto.UltrasoundImageDto
 import com.antonvovk.thyroidnodule.db.analyses.mappers.AnalysisMapper
 import com.antonvovk.thyroidnodule.db.analyses.mappers.UltrasoundImageMapper
 import com.antonvovk.thyroidnodule.services.AnalysisService
+import org.springframework.data.domain.PageRequest
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -16,9 +18,13 @@ class AnalysisController(
 ) {
 
     @GetMapping
-    fun getAll(): List<AnalysisDto> {
-        val analyses = analysisService.getAll()
-        return analysisMapper.map(analyses)
+    fun getAll(@RequestParam page: Int, @RequestParam size: Int): PageDto<AnalysisDto> {
+        val pageRequest = PageRequest.of(page, size)
+        val analyses = analysisService.getAll(pageRequest)
+        return PageDto(
+            analysisMapper.map(analyses.toList()),
+            analyses.totalElements
+        )
     }
 
     @PostMapping

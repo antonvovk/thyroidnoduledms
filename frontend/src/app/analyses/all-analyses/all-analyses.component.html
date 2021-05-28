@@ -6,6 +6,11 @@
 
   <div class="wrapper">
     <mat-table [dataSource]="analyses">
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef>Номер</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">{{i + 1 + (pageIndex * pageSize)}}</mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="sex">
         <mat-header-cell *matHeaderCellDef>Стать</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.patientInfo.sex | translate}} </mat-cell>
@@ -115,7 +120,10 @@
       </button>
     </div>
     <div>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator (page)="onPaginatorChange($event)" [length]="totalItems" [pageIndex]="pageIndex"
+                     [pageSizeOptions]="[10, 20, 50, 100]"
+                     [pageSize]="pageSize"
+                     showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>

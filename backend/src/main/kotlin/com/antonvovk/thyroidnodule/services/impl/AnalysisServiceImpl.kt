@@ -8,6 +8,8 @@ import com.antonvovk.thyroidnodule.db.analyses.repositories.UltrasoundImageRepos
 import com.antonvovk.thyroidnodule.db.users.models.User
 import com.antonvovk.thyroidnodule.db.users.repositories.UserRepository
 import com.antonvovk.thyroidnodule.services.AnalysisService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
@@ -19,7 +21,7 @@ class AnalysisServiceImpl(
     private val ultrasoundImageRepository: UltrasoundImageRepository
 ) : AnalysisService {
 
-    override fun getAll(): List<Analysis> = analysisRepository.findAll()
+    override fun getAll(pageRequest: PageRequest): Page<Analysis> = analysisRepository.findAll(pageRequest)
 
     override fun create(analysis: Analysis): Analysis {
         val username = SecurityContextHolder.getContext().authentication.principal as String

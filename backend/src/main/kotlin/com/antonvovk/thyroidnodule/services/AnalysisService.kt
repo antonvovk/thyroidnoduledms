@@ -2,10 +2,12 @@ package com.antonvovk.thyroidnodule.services
 
 import com.antonvovk.thyroidnodule.db.analyses.model.Analysis
 import com.antonvovk.thyroidnodule.db.analyses.model.UltrasoundImage
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 
 interface AnalysisService {
 
-    fun getAll(): List<Analysis>
+    fun getAll(pageRequest: PageRequest): Page<Analysis>
 
     fun create(analysis: Analysis): Analysis
 
