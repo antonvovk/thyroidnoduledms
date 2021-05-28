@@ -30,6 +30,11 @@ allOpen {
 }
 
 dependencies {
+    // AI
+    implementation("org.deeplearning4j", "deeplearning4j-core", "1.0.0-M1")
+    implementation("org.nd4j", "nd4j-native-platform", "1.0.0-M1")
+    implementation("org.datavec", "datavec-api", "1.0.0-M1")
+
     implementation("org.apache.poi", "poi", "5.0.0")
     implementation("org.apache.poi", "poi-ooxml", "5.0.0")
 
