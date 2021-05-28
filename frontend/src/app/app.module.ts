@@ -12,10 +12,41 @@ import { ErrorInterceptor } from "./_interceptors/error.interceptor";
 import { ToastrModule } from "ngx-toastr";
 import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
 import { AuthGuard } from "./_guards/auth.guard";
+import { MatPaginatorIntl } from "@angular/material/paginator";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+const dutchRangeLabel = (page: number, pageSize: number, length: number) => {
+  if (length == 0 || pageSize == 0) {
+    return `0 до ${length}`;
+  }
+
+  length = Math.max(length, 0);
+
+  const startIndex = page * pageSize;
+
+  // If the start index exceeds the list length, do not try and fix the end index to the end.
+  const endIndex = startIndex < length ?
+    Math.min(startIndex + pageSize, length) :
+    startIndex + pageSize;
+
+  return `${startIndex + 1} - ${endIndex} до ${length}`;
+}
+
+export function getDutchPaginatorIntl() {
+  const paginatorIntl = new MatPaginatorIntl();
+
+  paginatorIntl.itemsPerPageLabel = 'Елементів на сторінку:';
+  paginatorIntl.nextPageLabel = 'Наступна сторінка';
+  paginatorIntl.previousPageLabel = 'Попрередня сторінка';
+  paginatorIntl.getRangeLabel = dutchRangeLabel;
+  paginatorIntl.lastPageLabel = 'Остання сторінка'
+  paginatorIntl.firstPageLabel = 'Перша сторінка'
+
+  return paginatorIntl;
 }
 
 @NgModule({
@@ -51,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       multi: true,
     },
     AuthGuard,
-    QualificationTestedGuard
+    QualificationTestedGuard,
+    {provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl()}
   ],
   bootstrap: [AppComponent]
 })
