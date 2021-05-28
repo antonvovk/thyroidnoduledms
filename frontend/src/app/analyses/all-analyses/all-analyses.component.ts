@@ -88,6 +88,18 @@ export class AllAnalysesComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: Event) {
+    // @ts-ignore
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.analysesService.loadExel(file).subscribe(() => {
+        this.toastrService.info("Дані з exel успішно завантажені")
+        this.fetchAnalysis()
+      });
+    }
+  }
+
   private fetchAnalysis() {
     this.analysesService.getAll(this.pageIndex, this.pageSize).subscribe(analyses => {
       this.analyses = analyses.elements

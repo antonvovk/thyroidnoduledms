@@ -23,8 +23,7 @@ class FileUploadController @Autowired constructor(private val storageService: St
 
     @PostMapping
     fun handleFileUpload(
-        @RequestParam("file") file: MultipartFile,
-        redirectAttributes: RedirectAttributes
+        @RequestParam("file") file: MultipartFile
     ) {
         storageService.store(file)
     }

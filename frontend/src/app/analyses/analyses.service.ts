@@ -36,6 +36,12 @@ export class AnalysesService {
     return this.http.post(`${environment.apiUrl}/files`, formData)
   }
 
+  loadExel(exel: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', exel, exel.name);
+    return this.http.post(`${this.API_URL}/exel`, formData)
+  }
+
   addImage(id: number, image: UltrasoundImage): Observable<any> {
     return this.http.post(`${this.API_URL}/${id}/image`, image)
   }

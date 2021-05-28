@@ -26,11 +26,11 @@
         <mat-cell *matCellDef="let element"> {{element.ultrasoundAnalysis.size | translate}} </mat-cell>
       </ng-container>
 
-<!--      <ng-container matColumnDef="hasConglomerate">-->
-<!--        <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>-->
-<!--        <mat-cell-->
-<!--          *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate.toString() | translate}} </mat-cell>-->
-<!--      </ng-container>-->
+      <!--      <ng-container matColumnDef="hasConglomerate">-->
+      <!--        <mat-header-cell *matHeaderCellDef>Конгломерати вузла</mat-header-cell>-->
+      <!--        <mat-cell-->
+      <!--          *matCellDef="let element"> {{element.ultrasoundAnalysis.hasConglomerate.toString() | translate}} </mat-cell>-->
+      <!--      </ng-container>-->
 
       <ng-container matColumnDef="shape">
         <mat-header-cell *matHeaderCellDef>Форма вузла</mat-header-cell>
@@ -74,10 +74,10 @@
           *matCellDef="let element">{{element.ultrasoundAnalysis.suspiciousLymphNodes.toString() | translate}} </mat-cell>
       </ng-container>
 
-<!--      <ng-container matColumnDef="thirads">-->
-<!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>-->
-<!--        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads | translate}} </mat-cell>-->
-<!--      </ng-container>-->
+      <!--      <ng-container matColumnDef="thirads">-->
+      <!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів по Thirads</mat-header-cell>-->
+      <!--        <mat-cell *matCellDef="let element">{{element.ultrasoundAnalysis.thirads | translate}} </mat-cell>-->
+      <!--      </ng-container>-->
 
       <!--      <ng-container matColumnDef="bethesdaLevel">-->
       <!--        <mat-header-cell *matHeaderCellDef>Класифікація вузлів після (ТАБ) по Bethesda</mat-header-cell>-->
@@ -97,7 +97,7 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button (click)="editAnalysis(element)" color="primary" mat-icon-button *ngIf="editPermission(element)">
+          <button (click)="editAnalysis(element)" *ngIf="editPermission(element)" color="primary" mat-icon-button>
             <mat-icon [matTooltip]="'Редагувати'">edit_calendar</mat-icon>
           </button>
 
@@ -117,11 +117,23 @@
   </div>
 
   <div class="mat-paginator-sticky">
-    <div style="margin-left: 20px">
-      <button (click)="addAnalysis()" color="primary" mat-raised-button>
-        <mat-icon>add</mat-icon>
-        Додати
-      </button>
+    <div style="display: flex; flex-flow: row; align-items: center">
+      <div style="margin-left: 20px; margin-right: 20px">
+        <button (click)="addAnalysis()" color="primary" mat-raised-button>
+          <mat-icon>add</mat-icon>
+          Додати
+        </button>
+      </div>
+      <div>
+        <input #fileUpload (change)="onFileSelected($event)" [hidden]="true" type="file">
+
+        <div>
+          <button (click)="fileUpload.click()" color="primary" mat-raised-button>
+            <mat-icon>note_add</mat-icon>
+            Завантажити exel
+          </button>
+        </div>
+      </div>
     </div>
     <div>
       <mat-paginator (page)="onPaginatorChange($event)" [length]="totalItems" [pageIndex]="pageIndex"

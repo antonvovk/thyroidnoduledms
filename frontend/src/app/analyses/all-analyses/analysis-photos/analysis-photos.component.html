@@ -1,5 +1,9 @@
 <h1 mat-dialog-title>Знімки УЗД</h1>
 <div class="container" mat-dialog-content>
+  <div *ngIf="data.ultrasoundAnalysis.images.length === 0">
+    Для цього дослідження немає знімків
+  </div>
+
   <div *ngFor="let image of data.ultrasoundAnalysis.images; trackBy: trackById" class="image">
     <div style="margin-top: 40px; margin-bottom: 10px; display: flex; flex-direction: row; align-items: center">
       <p>{{image.filename}}</p>
@@ -18,8 +22,9 @@
 
       <div class="file-upload">
         <button (click)="fileUpload.click()" class="upload-btn" color="primary"
-                mat-mini-fab>
+                mat-raised-button>
           <mat-icon>attach_file</mat-icon>
+          Додати знімок
         </button>
       </div>
     </div>
