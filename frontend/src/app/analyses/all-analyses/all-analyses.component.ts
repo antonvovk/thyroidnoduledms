@@ -6,6 +6,7 @@ import { AddEditAnalysisComponent } from "./add-edit-analisys/add-edit-analysis.
 import { AuthService } from "../../auth/auth.service";
 import { AnalysisPhotosComponent } from "./analysis-photos/analysis-photos.component";
 import { PageEvent } from "@angular/material/paginator";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-all-analyses',
@@ -41,7 +42,8 @@ export class AllAnalysesComponent implements OnInit {
 
   constructor(private analysesService: AnalysesService,
               public dialog: MatDialog,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -75,6 +77,10 @@ export class AllAnalysesComponent implements OnInit {
     this.fetchAnalysis()
   }
 
+  editPermission(analysis: Analysis): boolean {
+    return this.authService.user.email === analysis.createdBy.email
+  }
+
   private fetchAnalysis() {
     this.analysesService.getAll(this.pageIndex, this.pageSize).subscribe(analyses => {
       this.analyses = analyses.elements
@@ -98,14 +104,13 @@ export class AllAnalysesComponent implements OnInit {
 
         if (element) {
           this.analysesService.update({...analysis, id: element.id}).subscribe((res) => {
-            let indx = this.analyses.findIndex(a => a.id == res.id)
-            this.analyses[indx] = res
-            this.analyses = [...this.analyses]
+            this.fetchAnalysis()
+            this.toastrService.info("Успішно додано нове дослідження")
           })
         } else {
           this.analysesService.create(analysis).subscribe((res) => {
-            this.analyses.push(res)
-            this.analyses = [...this.analyses]
+            this.toastrService.info("Успішно оновлено дані дослідження")
+            this.fetchAnalysis()
           })
         }
       }

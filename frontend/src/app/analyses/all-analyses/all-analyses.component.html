@@ -97,7 +97,7 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button (click)="editAnalysis(element)" color="primary" mat-icon-button>
+          <button (click)="editAnalysis(element)" color="primary" mat-icon-button *ngIf="editPermission(element)">
             <mat-icon [matTooltip]="'Редагувати'">edit_calendar</mat-icon>
           </button>
 
