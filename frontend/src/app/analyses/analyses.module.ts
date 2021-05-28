@@ -20,13 +20,15 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AnalysisPhotosComponent } from './all-analyses/analysis-photos/analysis-photos.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { AnalysisDetailsComponent } from './all-analyses/analysis-details/analysis-details.component';
 
 
 @NgModule({
   declarations: [
     AllAnalysesComponent,
     AddEditAnalysisComponent,
-    AnalysisPhotosComponent
+    AnalysisPhotosComponent,
+    AnalysisDetailsComponent
   ],
     imports: [
         CommonModule,

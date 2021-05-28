@@ -104,11 +104,15 @@
           <button (click)="editPhotos(element)" color="primary" mat-icon-button>
             <mat-icon [matTooltip]="'УЗД знімки'">image</mat-icon>
           </button>
+
+          <button (click)="viewDetails(element)" color="primary" mat-icon-button>
+            <mat-icon [matTooltip]="'Переглянути'">visibility</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="test"></mat-row>
     </mat-table>
   </div>
 

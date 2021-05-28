@@ -7,6 +7,7 @@ import { AuthService } from "../../auth/auth.service";
 import { AnalysisPhotosComponent } from "./analysis-photos/analysis-photos.component";
 import { PageEvent } from "@angular/material/paginator";
 import { ToastrService } from "ngx-toastr";
+import { AnalysisDetailsComponent } from "./analysis-details/analysis-details.component";
 
 @Component({
   selector: 'app-all-analyses',
@@ -79,6 +80,12 @@ export class AllAnalysesComponent implements OnInit {
 
   editPermission(analysis: Analysis): boolean {
     return this.authService.user.email === analysis.createdBy.email
+  }
+
+  viewDetails(element): void {
+    const dialogRef = this.dialog.open(AnalysisDetailsComponent, {
+      data: element
+    });
   }
 
   private fetchAnalysis() {
