@@ -11,6 +11,7 @@ import com.antonvovk.thyroidnodule.db.users.models.User
 import com.antonvovk.thyroidnodule.db.users.repositories.GroupRepository
 import com.antonvovk.thyroidnodule.db.users.repositories.PermissionRepository
 import com.antonvovk.thyroidnodule.db.users.repositories.UserRepository
+import com.antonvovk.thyroidnodule.services.NeuralNetworkService
 import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
@@ -19,7 +20,6 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.core.io.ClassPathResource
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
-import java.io.FileInputStream
 
 @Component
 class DataLoader(
@@ -28,7 +28,8 @@ class DataLoader(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
     private val qualificationQuestionRepository: QualificationQuestionRepository,
-    private val analysisRepository: AnalysisRepository
+    private val analysisRepository: AnalysisRepository,
+    private val neuralNetworkService: NeuralNetworkService
 ) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments?) {
@@ -123,6 +124,7 @@ class DataLoader(
         )
 
         analysisRepository.saveAll(loadFromExel(user))
+        neuralNetworkService.init()
     }
 
     fun loadFromExel(user: User): MutableList<Analysis> {

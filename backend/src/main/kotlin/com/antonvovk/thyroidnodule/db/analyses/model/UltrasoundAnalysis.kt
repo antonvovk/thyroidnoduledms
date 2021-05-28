@@ -44,7 +44,7 @@ data class UltrasoundAnalysis(
     @Enumerated(EnumType.STRING)
     var thirads: Thirads,
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         schema = "analyses",
         name = "NoduleStructure",
