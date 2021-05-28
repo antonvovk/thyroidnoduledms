@@ -46,10 +46,10 @@ class DataLoader(
         groupRepository.saveAll(groupList)
 
         val user = User(
-            firstName = "Admin",
-            lastName = "Admin",
-            middleName = "Admin",
-            workPlace = "ThyroidNoduleDMS",
+            firstName = "Андрій",
+            lastName = "Фечан",
+            middleName = "Васильович",
+            workPlace = "НУЛП",
             email = "admin@admin.com",
             passwordHash = passwordEncoder.encode("password"),
             isQualificationTested = true,

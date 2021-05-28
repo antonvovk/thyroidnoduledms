@@ -131,6 +131,42 @@
       {{data.biopsyAnalysis.bethesdaLevel | translate}}
     </span>
   </div>
+
+  <div class="row">
+    <span class="title">
+      Додано:
+    </span>
+    <span class="text">
+      {{data.created | date: 'dd MMMM yyyy, hh:mm:ss'}}
+    </span>
+  </div>
+
+  <div class="row">
+    <span class="title">
+      Востаннє змінено:
+    </span>
+    <span class="text">
+      {{data.updated | date: 'dd MMMM yyyy, hh:mm:ss'}}
+    </span>
+  </div>
+
+  <div class="row">
+    <span class="title">
+      Додано користувачем:
+    </span>
+    <span class="text">
+      {{data.createdBy.firstName}} {{data.createdBy.lastName}} ({{data.createdBy.email}})
+    </span>
+  </div>
+
+  <div class="row">
+    <span class="title">
+      Востаннє змінено користувачем:
+    </span>
+    <span class="text">
+      {{data.updatedBy.firstName}} {{data.updatedBy.lastName}} ({{data.updatedBy.email}})
+    </span>
+  </div>
 </div>
 
 <div mat-dialog-actions style="display:flex; justify-content: flex-end">

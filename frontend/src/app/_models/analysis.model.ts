@@ -9,5 +9,7 @@ export interface Analysis {
   updatedBy: User,
   patientInfo: PatientInfo,
   biopsyAnalysis: BiopsyAnalysis,
-  ultrasoundAnalysis: UltrasoundAnalysis
+  ultrasoundAnalysis: UltrasoundAnalysis,
+  created: Date,
+  updated: Date
 }

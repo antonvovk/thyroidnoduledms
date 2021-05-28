@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,11 @@ import { ToastrModule } from "ngx-toastr";
 import { QualificationTestedGuard } from "./_guards/qualification-tested.guard";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MatPaginatorIntl } from "@angular/material/paginator";
+
+import localeFr from '@angular/common/locales/uk';
+import { registerLocaleData } from "@angular/common";
+
+registerLocaleData(localeFr);
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -83,7 +88,11 @@ export function getDutchPaginatorIntl() {
     },
     AuthGuard,
     QualificationTestedGuard,
-    {provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl()}
+    {provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl()},
+    {
+      provide: LOCALE_ID,
+      useValue: 'uk-UA'
+    }
   ],
   bootstrap: [AppComponent]
 })
