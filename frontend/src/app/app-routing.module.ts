@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
     canLoad: [AuthGuard]
+  },
+  {
+    path: 'ai',
+    loadChildren: () => import('./neural-network/neural-network.module').then(m => m.NeuralNetworkModule),
+    canLoad: [AuthGuard, QualificationTestedGuard]
   }
 ];
 

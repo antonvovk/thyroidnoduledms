@@ -24,6 +24,11 @@
             <span>Сторінка користувача</span>
           </button>
 
+          <button mat-menu-item routerLink="/ai">
+            <mat-icon>call_split</mat-icon>
+            <span>Сторінка класифікатора вузлів</span>
+          </button>
+
           <button mat-menu-item (click)="logout()" *ngIf="show()">
             <mat-icon>logout</mat-icon>
             <span>Вийти</span>
