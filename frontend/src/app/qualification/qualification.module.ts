@@ -10,21 +10,23 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { QualificationService } from "./qualification.service";
+import { ShareModule } from "../shared/share.module";
 
 @NgModule({
   declarations: [
     QualificationTestingComponent
   ],
-  imports: [
-    CommonModule,
-    QualificationRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule
-  ],
+    imports: [
+        CommonModule,
+        QualificationRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        ShareModule
+    ],
   providers: [
     QualificationService,
   ]

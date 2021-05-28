@@ -1,8 +1,6 @@
 package com.antonvovk.thyroidnodule.api.controller
 
-import com.antonvovk.thyroidnodule.api.dto.AuthenticationDto
-import com.antonvovk.thyroidnodule.api.dto.JwtTokenDto
-import com.antonvovk.thyroidnodule.api.dto.RegistrationDto
+import com.antonvovk.thyroidnodule.api.dto.*
 import com.antonvovk.thyroidnodule.db.users.mappers.UserMapper
 import com.antonvovk.thyroidnodule.security.services.AuthenticationService
 import com.antonvovk.thyroidnodule.services.UserService
@@ -27,5 +25,10 @@ class AuthenticationController(
     fun register(@RequestBody body: RegistrationDto) {
         val user = userMapper.map(body)
         userService.register(user)
+    }
+
+    @PutMapping
+    fun updateInfo(@RequestBody body: UpdateUserInfoDto): UserDto {
+        return userMapper.map(userService.update(body))
     }
 }

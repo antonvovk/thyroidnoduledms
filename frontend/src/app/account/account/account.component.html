@@ -1,2 +1,77 @@
 <app-header></app-header>
-<p>account works!</p>
+
+<div class="main-wrapper">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="title">Сторінка користувача</div>
+      </mat-card-title>
+    </mat-card-header>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
+      <mat-card-content>
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="firstName" matInput placeholder="Ім'я">
+          <mat-error>
+            Ім'я не може бути порожнім
+          </mat-error>
+          <mat-hint>Введіть ваше ім'я</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="lastName" matInput placeholder="Прізвище">
+          <mat-error>
+            Прізвище не може бути порожнім
+          </mat-error>
+          <mat-hint>Введіть ваше прізвище</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="middleName" matInput placeholder="По батькові">
+          <mat-error>
+            По батькові не може бути порожнім
+          </mat-error>
+          <mat-hint>Введіть по батькові</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="workPlace" matInput placeholder="Місце роботи">
+          <mat-error>
+            Місце роботи не може бути порожнім
+          </mat-error>
+          <mat-hint>Введіть назву місця де ви працюєте</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input formControlName="email" matInput placeholder="Емейл" type="email">
+          <mat-error>
+            Некоректний формат емейлу
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input [type]="hide ? 'password' : 'text'" formControlName="oldPassword" matInput placeholder="Старий пароль">
+          <mat-error>
+            Пароль має містити мінімум 8 символів
+          </mat-error>
+          <button (click)="onHideClick()" [attr.aria-pressed]="hide" mat-icon-button matSuffix type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Введіть ваш старий пароль</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="example-full-width">
+          <input [type]="hide ? 'password' : 'text'" formControlName="newPassword" matInput placeholder="Новий пароль">
+          <mat-error>
+            Пароль має містити мінімум 8 символів
+          </mat-error>
+          <button (click)="onHideClick()" [attr.aria-pressed]="hide" mat-icon-button matSuffix type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Введіть ваш новий пароль</mat-hint>
+        </mat-form-field>
+      </mat-card-content>
+      <button class="btn-block" color="primary" mat-stroked-button type="submit">Зберегти зміни</button>
+    </form>
+  </mat-card>
+</div>

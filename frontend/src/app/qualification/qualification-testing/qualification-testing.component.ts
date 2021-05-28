@@ -23,13 +23,16 @@ export class QualificationTestingComponent implements OnInit {
 
   ngOnInit(): void {
     this.qualificationService.getAllQuestions().subscribe(questions => {
-      console.log(questions);
       this.questions = questions
 
       for (const question of questions) {
         this.form.push(new FormControl(null, Validators.required))
       }
     })
+  }
+
+  qualificationTestPassed(): boolean {
+    return this.authService.user.qualificationTestPassed
   }
 
   getControl(index: number): FormControl {
@@ -53,7 +56,6 @@ export class QualificationTestingComponent implements OnInit {
       })
     }
 
-    console.log(answeredQuestions);
     this.qualificationService.testQualification(answeredQuestions).subscribe(res => {
       console.log(res);
       this.qualificationResult = res

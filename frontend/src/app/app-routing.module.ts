@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'qualification',
-    loadChildren: () => import('./qualification/qualification.module').then(m => m.QualificationModule)
+    loadChildren: () => import('./qualification/qualification.module').then(m => m.QualificationModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'analyses',

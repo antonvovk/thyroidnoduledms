@@ -6,6 +6,7 @@ import { environment } from "../../environments/environment";
 import { User } from "../_models/user.model";
 import { Router } from "@angular/router";
 import * as bcrypt from 'bcryptjs';
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,8 @@ import * as bcrypt from 'bcryptjs';
 export class AuthService {
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private toastrService: ToastrService) {
     const token = localStorage.getItem('token')
     if (token) {
       this._token = token
@@ -70,6 +72,19 @@ export class AuthService {
           },
           ['qualification', 'testing'])
       })
+    });
+  }
+
+  updateUser(user: User): void {
+    this.http.put<User>(`${environment.apiUrl}/authentication`, user).subscribe(res => {
+      this.toastrService.info("Успішно оновлено дані")
+
+      if (res) {
+        this._user = res
+        localStorage.setItem('user', JSON.stringify(res))
+      }
+    }, () => {
+      this.toastrService.error("Помилка оновлення данних")
     });
   }
 
