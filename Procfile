@@ -1,1 +1,1 @@
-web: java -jar backend/build/libs/thyroid-nodule-dms.war
+web: java -jar -Dserver.port=$PORT backend/build/libs/thyroid-nodule-dms.war

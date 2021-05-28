@@ -105,11 +105,11 @@ export class AllAnalysesComponent implements OnInit {
         if (element) {
           this.analysesService.update({...analysis, id: element.id}).subscribe((res) => {
             this.fetchAnalysis()
-            this.toastrService.info("Успішно додано нове дослідження")
+            this.toastrService.info("Успішно оновлено дані дослідження")
           })
         } else {
           this.analysesService.create(analysis).subscribe((res) => {
-            this.toastrService.info("Успішно оновлено дані дослідження")
+            this.toastrService.info("Успішно додано нове дослідження")
             this.fetchAnalysis()
           })
         }
