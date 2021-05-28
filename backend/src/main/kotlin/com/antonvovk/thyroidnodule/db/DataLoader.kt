@@ -126,7 +126,7 @@ class DataLoader(
     }
 
     fun loadFromExel(user: User): MutableList<Analysis> {
-        val file = FileInputStream(ClassPathResource("data.xlsx").file)
+        val file = ClassPathResource("data.xlsx").inputStream
         val workbook: Workbook = XSSFWorkbook(file)
         val sheet = workbook.getSheetAt(0)
         val analyses = mutableListOf<Analysis>()
