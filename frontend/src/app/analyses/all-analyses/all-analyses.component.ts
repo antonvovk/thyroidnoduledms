@@ -4,6 +4,7 @@ import { Analysis } from "../../_models/analysis.model";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEditAnalysisComponent } from "./add-edit-analisys/add-edit-analysis.component";
 import { AuthService } from "../../auth/auth.service";
+import { AnalysisPhotosComponent } from "./analysis-photos/analysis-photos.component";
 
 @Component({
   selector: 'app-all-analyses',
@@ -53,6 +54,19 @@ export class AllAnalysesComponent implements OnInit {
     this.openAddEditDialog(element)
   }
 
+  editPhotos(element: Analysis): void {
+    const dialogRef = this.dialog.open(AnalysisPhotosComponent, {
+      width: '80%',
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe((analysis: Analysis) => {
+      if (analysis != null) {
+        console.log(analysis);
+      }
+    });
+  }
+
   private openAddEditDialog(element?: Analysis): void {
     const dialogRef = this.dialog.open(AddEditAnalysisComponent, {
       width: '600px',
@@ -77,15 +91,5 @@ export class AllAnalysesComponent implements OnInit {
         }
       }
     });
-  }
-
-  onFileSelected(event: Event) {
-    // @ts-ignore
-    const file:File = event.target.files[0];
-
-    if (file) {
-      const upload$ = this.analysesService.postFile(file)
-      upload$.subscribe();
-    }
   }
 }

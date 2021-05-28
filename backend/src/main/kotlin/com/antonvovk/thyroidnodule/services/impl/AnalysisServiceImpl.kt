@@ -1,11 +1,13 @@
-package com.antonvovk.thyroidnodule.security.services.impl
+package com.antonvovk.thyroidnodule.services.impl
 
 import com.antonvovk.thyroidnodule.api.exceptions.common.EntityNotFoundException
 import com.antonvovk.thyroidnodule.db.analyses.model.Analysis
+import com.antonvovk.thyroidnodule.db.analyses.model.UltrasoundImage
 import com.antonvovk.thyroidnodule.db.analyses.repositories.AnalysisRepository
+import com.antonvovk.thyroidnodule.db.analyses.repositories.UltrasoundImageRepository
 import com.antonvovk.thyroidnodule.db.users.models.User
 import com.antonvovk.thyroidnodule.db.users.repositories.UserRepository
-import com.antonvovk.thyroidnodule.security.services.AnalysisService
+import com.antonvovk.thyroidnodule.services.AnalysisService
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Service
 @Service
 class AnalysisServiceImpl(
     private val analysisRepository: AnalysisRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val ultrasoundImageRepository: UltrasoundImageRepository
 ) : AnalysisService {
 
     override fun getAll(): List<Analysis> = analysisRepository.findAll()
@@ -56,5 +59,17 @@ class AnalysisServiceImpl(
         entity.ultrasoundAnalysis.structure = analysis.ultrasoundAnalysis.structure
 
         analysisRepository.save(entity)
+    }
+
+    override fun addImage(id: Long, image: UltrasoundImage): Long {
+        val entity = analysisRepository.findByIdOrNull(id)
+            ?: throw EntityNotFoundException(id, Analysis::class)
+
+        image.ultrasoundAnalysis = entity.ultrasoundAnalysis
+        return ultrasoundImageRepository.save(image).id
+    }
+
+    override fun removeImage(id: Long, image: UltrasoundImage) {
+        ultrasoundImageRepository.deleteById(image.id)
     }
 }

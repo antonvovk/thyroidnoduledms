@@ -18,30 +18,34 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ReactiveFormsModule } from "@angular/forms";
+import { AnalysisPhotosComponent } from './all-analyses/analysis-photos/analysis-photos.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 @NgModule({
   declarations: [
     AllAnalysesComponent,
-    AddEditAnalysisComponent
+    AddEditAnalysisComponent,
+    AnalysisPhotosComponent
   ],
-  imports: [
-    CommonModule,
-    AnalysesRoutingModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatIconModule,
-    ShareModule,
-    TranslateModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        AnalysesRoutingModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatIconModule,
+        ShareModule,
+        TranslateModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        ReactiveFormsModule,
+        MatTooltipModule
+    ],
   providers: [
     AnalysesService
   ]

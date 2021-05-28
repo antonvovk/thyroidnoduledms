@@ -3,6 +3,7 @@ import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Analysis } from "../_models/analysis.model";
+import { UltrasoundImage } from "../_models/ultrasound-image.model";
 
 @Injectable()
 export class AnalysesService {
@@ -28,5 +29,13 @@ export class AnalysesService {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     return this.http.post(`${environment.apiUrl}/files`, formData)
+  }
+
+  addImage(id: number, image: UltrasoundImage): Observable<any> {
+    return this.http.post(`${this.API_URL}/${id}/image`, image)
+  }
+
+  removeImage(id: number, image: UltrasoundImage): Observable<any> {
+    return this.http.put(`${this.API_URL}/${id}/image`, image)
   }
 }
