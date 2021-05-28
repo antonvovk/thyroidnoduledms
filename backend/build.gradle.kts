@@ -34,8 +34,7 @@ dependencies {
     implementation("org.apache.poi", "poi-ooxml", "5.0.0")
 
     // Frontend
-    // TODO
-//    runtimeOnly(project(":frontend"))
+    runtimeOnly(project(":frontend"))
 
     // Logger
     implementation("org.slf4j", "slf4j-api", "1.7.30")
