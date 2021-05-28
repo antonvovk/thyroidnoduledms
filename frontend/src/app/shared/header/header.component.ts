@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from "../../auth/auth.service";
 
 @Component({
@@ -19,5 +19,9 @@ export class HeaderComponent {
 
   show(): boolean {
     return this.authService.user != null
+  }
+
+  logout(): void {
+    this.authService.logout()
   }
 }

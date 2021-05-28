@@ -1,6 +1,37 @@
 <mat-toolbar class="mat-elevation-z2" color="primary">
   <div style="display: flex; justify-content: space-between; flex-flow: row; width: 100%">
-    <div routerLink="/" style="display: flex; align-items: center; cursor: pointer">ThyroidNoduleDMS</div>
+    <div style="display:flex; flex-flow: row; align-items: center">
+      <div style="display: flex; align-items: center">
+        <div [matMenuTriggerFor]="menu" style="display: flex; align-items: center; cursor: pointer">
+          <button mat-icon-button>
+            <mat-icon>apps</mat-icon>
+          </button>
+          ThyroidNoduleDMS
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/">
+            <mat-icon>home</mat-icon>
+            <span>Головна сторінка</span>
+          </button>
+
+          <button mat-menu-item routerLink="/analyses">
+            <mat-icon>date_range</mat-icon>
+            <span>Сторінка досліджень</span>
+          </button>
+
+          <button mat-menu-item routerLink="/account">
+            <mat-icon>account_circle</mat-icon>
+            <span>Сторінка користувача</span>
+          </button>
+
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Вийти</span>
+          </button>
+        </mat-menu>
+      </div>
+      <!--      <div routerLink="/" style="display: flex; align-items: center; cursor: pointer">ThyroidNoduleDMS</div>-->
+    </div>
     <div *ngIf="show() && !hide" routerLink="/account" style="display: flex; align-items: center; cursor: pointer">
       {{getName()}}
       <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
