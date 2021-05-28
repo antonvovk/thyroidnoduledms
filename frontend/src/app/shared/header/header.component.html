@@ -1,10 +1,14 @@
-<mat-toolbar color="primary" class="mat-elevation-z2">
-  <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>ThyroidNoduleDMS</span>
-  <span class="example-spacer"></span>
-  <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
-    <mat-icon>favorite</mat-icon>
-  </button>
+<mat-toolbar class="mat-elevation-z2" color="primary">
+  <div style="display: flex; justify-content: space-between; flex-flow: row; width: 100%">
+    <div routerLink="/" style="display: flex; align-items: center; cursor: pointer">ThyroidNoduleDMS</div>
+    <div *ngIf="show() && !hide" routerLink="/account" style="display: flex; align-items: center; cursor: pointer">
+      {{getName()}}
+      <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!show() && !hide" routerLink="/auth" style="display: flex; align-items: center; cursor: pointer">
+      <button class="button" routerLink="/auth/login">Увійти</button>
+    </div>
+  </div>
 </mat-toolbar>

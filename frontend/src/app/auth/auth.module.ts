@@ -10,22 +10,24 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { RegisterComponent } from './register/register.component';
+import { ShareModule } from "../shared/share.module";
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        ShareModule
+    ]
 })
 export class AuthModule {
 }

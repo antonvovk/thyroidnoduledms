@@ -1,3 +1,20 @@
-.example-spacer {
-  flex: 1 1 auto;
+.button {
+  color: #ffffff;
+  margin: 0;
+  align-self: center;
+  font-size: 1rem;
+  padding: 12px 32px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: 5px white solid;
+  transition: 300ms all cubic-bezier(.4, 0, .2, 1);
+  background-color: #3f51b5;
+  cursor: pointer;
+  min-width: 200px;
 }

@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'analyses',
     loadChildren: () => import('./analyses/analyses.module').then(m => m.AnalysesModule),
     canLoad: [QualificationTestedGuard]
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
   }
 ];
 

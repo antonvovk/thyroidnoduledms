@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StartRoutingModule } from './start-routing.module';
-import { StartComponent } from './start.component';
+
+import { AccountRoutingModule } from './account-routing.module';
+import { AccountComponent } from './account/account.component';
 import { ShareModule } from "../shared/share.module";
+
 
 @NgModule({
   declarations: [
-    StartComponent,
+    AccountComponent
   ],
   imports: [
     CommonModule,
-    StartRoutingModule,
+    AccountRoutingModule,
     ShareModule
   ]
 })
-export class StartModule {
-}
+export class AccountModule { }
