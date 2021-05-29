@@ -16,6 +16,7 @@ import { MatPaginatorIntl } from "@angular/material/paginator";
 
 import localeFr from '@angular/common/locales/uk';
 import { registerLocaleData } from "@angular/common";
+import { NgHttpLoaderModule } from "ng-http-loader";
 
 registerLocaleData(localeFr);
 
@@ -74,6 +75,7 @@ export function getDutchPaginatorIntl() {
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [
     {
