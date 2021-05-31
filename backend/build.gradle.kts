@@ -31,15 +31,26 @@ allOpen {
 
 dependencies {
     // AI
-    implementation("org.deeplearning4j", "deeplearning4j-core", "1.0.0-M1")
-    implementation("org.nd4j", "nd4j-native-platform", "1.0.0-M1")
-    implementation("org.datavec", "datavec-api", "1.0.0-M1")
+    implementation("org.deeplearning4j", "deeplearning4j-core", "1.0.0-M1") {
+        exclude("org.bytedeco", "opencv-platform")
+        exclude("org.bytedeco", "leptonica-platform")
+        exclude("org.bytedeco", "hdf5-platform")
+        exclude("org.bytedeco", "ffmpeg")
+        exclude("org.bytedeco", "openblas")
+    }
+    implementation("org.nd4j", "nd4j-native", "1.0.0-M1", classifier = "windows-x86_64")
+    implementation("org.nd4j", "nd4j-native", "1.0.0-M1")
+    implementation("org.nd4j", "nd4j-native-platform", "1.0.0-M1") {
+        exclude("org.nd4j", "nd4j-native")
+        exclude("org.bytedeco", "openblas")
+    }
+    implementation("org.bytedeco", "openblas", "0.3.13-1.5.5", classifier = "windows-x86_64")
 
     implementation("org.apache.poi", "poi", "5.0.0")
     implementation("org.apache.poi", "poi-ooxml", "5.0.0")
 
     // Frontend
-    runtimeOnly(project(":frontend"))
+    // runtimeOnly(project(":frontend"))
 
     // Logger
     implementation("org.slf4j", "slf4j-api", "1.7.30")
